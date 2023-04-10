@@ -1,4 +1,5 @@
 ﻿using INTEX_3_11.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -28,10 +29,21 @@ namespace INTEX_3_11.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult BurialList()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
         }
+
+        public IActionResult BurialView()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult AddData()
+        {
+            return View();
+        }
+
     }
 }
