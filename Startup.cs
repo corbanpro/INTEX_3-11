@@ -30,36 +30,33 @@ namespace INTEX_3_11
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
-
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            //services.Configure<IdentityOptions>(options =>
-            //{
-            //    // Password settings.
-            //    options.Password.RequireDigit = true;
-            //    options.Password.RequiredLength = 8;
-            //    options.Password.RequireNonAlphanumeric = false;
-            //    options.Password.RequireUppercase = true;
-            //    options.Password.RequireLowercase = true;
-            //    options.Password.RequiredUniqueChars = 1;
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings.
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequiredUniqueChars = 1;
 
-            //    // Lockout settings.
-            //    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
-            //    options.Lockout.MaxFailedAccessAttempts = 5;
-            //    options.Lockout.AllowedForNewUsers = true;
+                // Lockout settings.
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
 
-            //    // User settings.
-            //    options.User.RequireUniqueEmail = true;
+                // User settings.
+                options.User.RequireUniqueEmail = true;
 
-            //    // SignIn settings.
-            //    options.SignIn.RequireConfirmedEmail = true;
-            //    options.SignIn.RequireConfirmedPhoneNumber = false;
-            //});
+                // SignIn settings.
+                options.SignIn.RequireConfirmedEmail = true;
+                options.SignIn.RequireConfirmedPhoneNumber = false;
+            });
 
 
             services.AddAuthentication()
@@ -82,21 +79,9 @@ namespace INTEX_3_11
                 options.Password.RequiredLength = 12;
                 options.Password.RequiredUniqueChars = 1;
 
-                //// Lockout settings.
-                //options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
-                //options.Lockout.MaxFailedAccessAttempts = 5;
-                //options.Lockout.AllowedForNewUsers = true;
-
-                //// User settings.
-                //options.User.RequireUniqueEmail = true;
-
-                //// SignIn settings.
-                //options.SignIn.RequireConfirmedEmail = true;
-                //options.SignIn.RequireConfirmedPhoneNumber = false;
-
-                //options.ClaimsIdentity.RoleClaimType = "role";
-                //options.ClaimsIdentity.UserIdClaimType = "id";
-                //options.ClaimsIdentity.UserNameClaimType = "name";
+                options.ClaimsIdentity.RoleClaimType = "role";
+                options.ClaimsIdentity.UserIdClaimType = "id";
+                options.ClaimsIdentity.UserNameClaimType = "name";
             });
         }
 
@@ -121,6 +106,14 @@ namespace INTEX_3_11
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.Use(async (context, next) =>
+            {
+                Console.WriteLine("Adding CSP header...");
+                context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; frame-src 'self'");
+
+                await next();
+            });
 
             app.UseEndpoints(endpoints =>
             {
