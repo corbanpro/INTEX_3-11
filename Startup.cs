@@ -38,28 +38,28 @@ namespace INTEX_3_11
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            services.Configure<IdentityOptions>(options =>
-            {
-                // Password settings.
-                options.Password.RequireDigit = true;
-                options.Password.RequiredLength = 8;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = true;
-                options.Password.RequireLowercase = true;
-                options.Password.RequiredUniqueChars = 1;
+            //services.Configure<IdentityOptions>(options =>
+            //{
+            //    // Password settings.
+            //    options.Password.RequireDigit = true;
+            //    options.Password.RequiredLength = 8;
+            //    options.Password.RequireNonAlphanumeric = false;
+            //    options.Password.RequireUppercase = true;
+            //    options.Password.RequireLowercase = true;
+            //    options.Password.RequiredUniqueChars = 1;
 
-                // Lockout settings.
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
-                options.Lockout.MaxFailedAccessAttempts = 5;
-                options.Lockout.AllowedForNewUsers = true;
+            //    // Lockout settings.
+            //    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+            //    options.Lockout.MaxFailedAccessAttempts = 5;
+            //    options.Lockout.AllowedForNewUsers = true;
 
-                // User settings.
-                options.User.RequireUniqueEmail = true;
+            //    // User settings.
+            //    options.User.RequireUniqueEmail = true;
 
-                // SignIn settings.
-                options.SignIn.RequireConfirmedEmail = true;
-                options.SignIn.RequireConfirmedPhoneNumber = false;
-            });
+            //    // SignIn settings.
+            //    options.SignIn.RequireConfirmedEmail = true;
+            //    options.SignIn.RequireConfirmedPhoneNumber = false;
+            //});
 
 
             services.AddAuthentication()
@@ -82,9 +82,21 @@ namespace INTEX_3_11
                 options.Password.RequiredLength = 12;
                 options.Password.RequiredUniqueChars = 1;
 
-                options.ClaimsIdentity.RoleClaimType = "role";
-                options.ClaimsIdentity.UserIdClaimType = "id";
-                options.ClaimsIdentity.UserNameClaimType = "name";
+                //// Lockout settings.
+                //options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                //options.Lockout.MaxFailedAccessAttempts = 5;
+                //options.Lockout.AllowedForNewUsers = true;
+
+                //// User settings.
+                //options.User.RequireUniqueEmail = true;
+
+                //// SignIn settings.
+                //options.SignIn.RequireConfirmedEmail = true;
+                //options.SignIn.RequireConfirmedPhoneNumber = false;
+
+                //options.ClaimsIdentity.RoleClaimType = "role";
+                //options.ClaimsIdentity.UserIdClaimType = "id";
+                //options.ClaimsIdentity.UserNameClaimType = "name";
             });
         }
 
