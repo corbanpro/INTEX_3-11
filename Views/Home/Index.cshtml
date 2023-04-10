@@ -1,12 +1,22 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Mummy Tracker</h1>
-    <p>
-        Welcome to Mummy Tracker! During multiple years of study at Fag el-Gamous, researchers have excavated more than 1,000 mummies and collected data in field notes, spreadsheets, and simple databases about each mummy’s location, physical orientation in the ground, burial depth, hair color, wrapping (including information about the textiles used), sex, age, bone (including skull and teeth) dimensions, items accompanying the mummy, and more.
-        And, of course, there are many, many photographs. This website is a place where aspects of this information can be shared with researchers and interested members of the public around the world. Click here to view our <a asp-action="BurialView">burial information page</a>.
-    </p>
-    <img src="~/img/excavation.jpg" />
+<style>
+    p {
+        text-indent: 1.5em;
+    }
+</style>
+<div class="container text-center">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="display-4">Mummy Tracker</h1> <br />
+            <p>Welcome to Mummy Tracker! During multiple years of study at Fag el-Gamous, researchers have excavated more than 1,000 mummies and collected data in field notes, spreadsheets, and simple databases about each mummy’s location, physical orientation in the ground, burial depth, hair color, wrapping (including information about the textiles used), sex, age, bone (including skull and teeth) dimensions, items accompanying the mummy, and more. And, of course, there are many, many photographs.</p>
+            <p>This website is a place where aspects of this information can be shared with researchers and interested members of the public around the world. Click here to view our <a asp-action="BurialView" class="btn btn-primary">burial information page</a>.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <img src="~/img/excavation.jpg" class="img-fluid" />
+        </div>
+    </div>
 </div>
