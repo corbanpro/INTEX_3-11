@@ -4,11 +4,26 @@
 @{
     ViewData["Title"] = "View Burial";
 }
+@Model ? 
 
-<h1>
-    {Burial ID (SquareNorthSouth, NorthSouth, SquareEastWest, EastWest, Area, Burial Number)}
-</h1>
-<div class="row">
+<div>
+    <h1>@Model.BurialID</h1>
+    @*<h1>
+            {Burial ID (SquareNorthSouth, NorthSouth, SquareEastWest, EastWest, Area, Burial Number)}
+        </h1>*@
+<ul>
+    <li>Sex: @Model.Sex</li>
+    <li>Textile Color: @Model.TextileColor</li>
+    <li>Textile Structure: @Model.TextileStructure</li>
+    <li>Burial Depth: @Model.BurialDepth</li>
+    <li>Estimate Stature: @Model.EstimateStature</li>
+    <li>Age At Death: @Model.AgeAtDeath</li>
+    <li>Head Direction: @Model.HeadDirection</li>
+    <li>Textile Function: @Model.TextileFunction</li>
+    <li>Hair Color: @Model.HairColor</li>
+</ul>
+</div>
+@*<div class="row">
     <div class="col-6">
         <div class="row">
             <div class="col-5">
@@ -95,6 +110,6 @@
     <div class="col-6">
         <img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fthumbs.dreamstime.com%2Fz%2Fegyptian-mummy-24270001.jpg&tbnid=maLoL_zJmKoU7M&vet=12ahUKEwiU6dn4k6D-AhUjLN4AHXY5AXkQMygDegUIARDwAQ..i&imgrefurl=https%3A%2F%2Fwww.dreamstime.com%2Fphotos-images%2Fegyptian-mummy.html&docid=EBCFx8TfaYk5gM&w=957&h=1300&q=mummy%20images&ved=2ahUKEwiU6dn4k6D-AhUjLN4AHXY5AXkQMygDegUIARDwAQ" />
     </div>
-</div>
+</div>*@
 
 
