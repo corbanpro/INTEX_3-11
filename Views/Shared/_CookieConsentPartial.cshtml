@@ -5,12 +5,14 @@
     var showBanner = !consentFeature?.CanTrack ?? false;
     var cookieString = consentFeature?.CreateConsentCookie();
     showBanner = true;
+
 }
+
 
 @if (showBanner)
 {
     <div id="cookieConsent" class="alert alert-info alert-dismissible fade show pop-up" role="alert">
-        Use this space to summarize your privacy and cookie use policy. <a asp-page="/Privacy">Learn More</a>.
+        Accept Cookies! Click here to read our privacy policy. <a asp-page="/Privacy">Learn More</a>.
         <button type="button" class="accept-policy-b accept-policy close" data-dismiss="alert" aria-label="Close" data-cookie-string="@cookieString">
             <span aria-hidden="true">Accept</span>
         </button>
