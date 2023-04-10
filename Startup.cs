@@ -77,7 +77,16 @@ namespace INTEX_3_11
             app.UseRouting();
 
             app.UseAuthentication();
+
             app.UseAuthorization();
+
+            app.Use(async (context, next) =>
+            {
+                Console.WriteLine("Adding CSP header...");
+                context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; frame-src 'self'");
+
+                await next();
+            });
 
             app.UseEndpoints(endpoints =>
             {
