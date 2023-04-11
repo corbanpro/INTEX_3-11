@@ -126,5 +126,24 @@ namespace INTEX_3_11.Controllers
             return View();
         }
 
+
+        [HttpPost]
+        public IActionResult AddData(NewEntry ne)
+        {
+            //make sure its valid
+            if (ModelState.IsValid)
+            {
+                context.Add(ne);
+                context.SaveChanges();
+                return View("Confirmation", ne);
+
+            }
+            else
+            {
+                return View(ne);
+            }
+
+        }
+
     }
 }
