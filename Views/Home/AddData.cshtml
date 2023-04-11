@@ -3,5 +3,68 @@
 *@
 @{
 }
+@model NewEntry
+@*@model FullBurial*@
 
-<h1>Add Data</h1>
+@*not yet functional!!*@
+
+<h1>Add a Mummy</h1>
+
+<div>
+    <form method="post">
+        @*validation makes so error messages show up*@
+        @*<div asp-validation-summary="All"></div>*@
+
+        <label asp-for="Sex">Sex:</label>
+        <select asp-for="Sex">
+            <option value="U">Unknown</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select><br />
+
+        <label asp-for="Color">Textile Color:</label>
+        <input asp-for="Color" /><br />
+
+        <label asp-for="Structure">Textile Structure:</label>
+        <input asp-for="Structure" /><br />
+
+        <label asp-for="Depth">Burial Depth:</label>
+        <input asp-for="Depth" /><br />
+
+        <label asp-for="Ageatdeath">Age at death:</label>
+        <select asp-for="Ageatdeath">
+            <option value="U">Unknown</option>
+            <option value="A">Adult(15+)</option>
+            <option value="C">Child(3-15)</option>
+            <option value="I">Infant(1-3)</option>
+            <option value="N">Newborn(0-1)</option>
+        </select><br />
+
+        <label asp-for="Headdirection">Head Direction</label>
+        <select asp-for="Headdirection">
+            <option value="U">Unknown</option>
+            <option value="N">North</option>
+            <option value="E">East</option>
+            <option value="S">South</option>
+            <option value="W">West</option>
+        </select><br />
+
+        <label asp-for="Textilefunction">Textile Function:</label>
+        <input asp-for="Textilefunction" /><br />
+
+        <label asp-for="Haircolor">Hair Color:</label>
+        <select asp-for="Haircolor">
+            <option value="U">Unknown</option>
+            <option value="B">Brown</option>
+            <option value="K">Black</option>
+            <option value="A">Brown-Red</option>
+            <option value="R">Red</option>
+            <option value="D">Blond</option>
+        </select><br />
+
+        <label asp-for="Text">Field Notes:</label>
+        <input asp-for="Text" /><br />
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
