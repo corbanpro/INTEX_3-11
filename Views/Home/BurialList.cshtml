@@ -10,13 +10,17 @@
 
 @foreach (Burialmain b in Model.BurialList)
 {
-<div class="border-dark">
-    <div class="border-dark">
-        <h4>Mummy @b.Id</h4>
+    <div class="card">
+        <div class="card-header">
+            <h4>Mummy @b.Squarenorthsouth @b.Northsouth @b.Squareeastwest @b.Eastwest @b.Area @b.Burialnumber</h4>
+        </div>
+        <div class="card-body">
+            <p>This mummy was a @b.Sex @b.Ageatdeath with @b.Haircolor hair and @b.Wrapping wrapping found in the @b.Area area.</p>
+            <a asp-action="BurialView" asp-route-id="@b.Id" class="btn btn-primary">Read More!</a>
+        </div>
     </div>
-    <p>This mummy was a @b.Sex @b.Ageatdeath with @b.Haircolor hair and @b.Wrapping wrapping found in the @b.Area area.</p>
-    <button class="btn btn-primary"  type="button"><a asp-action="BurialView" asp-route-id="@b.Id">Read More!</a></button>
-</div>
+
+    <br />
 }
 
 <div page-model="@Model.PageInfo" page-action="BurialList" page-classes-enabled="true"
