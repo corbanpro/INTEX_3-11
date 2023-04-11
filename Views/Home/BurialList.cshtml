@@ -4,13 +4,16 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-@model List<Burialmain>
+@model PageModel
 
 <h1>Burial List</h1>
 
-@foreach (Burialmain b in Model)
+@foreach (Burialmain b in Model.BurialList)
 {
-     <p>@b.Id</p>
+     <a asp-action="BurialView" asp-route-id="@b.Id">@b.Id</a>
 }
 
-<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="BurialView">Burial</a>
+<div page-model="@Model.PageInfo" page-action="BurialList" page-classes-enabled="true"
+     page-class="btn" page-class-normal="btn-outline-dark"
+     page-class-selected="btn-primary" class="btn-group pull-right m-1">
+</div>

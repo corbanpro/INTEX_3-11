@@ -1,4 +1,5 @@
 ﻿using INTEX_3_11.Models;
+using INTEX_3_11.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing.Template;
@@ -30,17 +31,35 @@ namespace INTEX_3_11.Controllers
             return View();
         }
 
-        public IActionResult BurialList()
+        public IActionResult BurialList(string burialFilter, int pageNum = 1)
         {
-            List<Burialmain> Burials = new List<Burialmain>();
-            Burials = context.Burialmain.ToList();
-            return View(Burials);
+            int pageSize = 40;
+            PageModel PageModel = new PageModel
+            {
+                BurialList = context.Burialmain
+                .OrderBy(x => x.Id)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize)
+                .ToList(), 
+
+                PageInfo = new PageInfo()
+                {
+                    TotalNumBurials = 
+                        (burialFilter == null
+                            ? context.Burialmain.Count()
+                            : context.Burialmain.Count()),
+                    BurialsPerPage = pageSize,
+                    CurrentPage = pageNum
+                }
+            };
+
+            return View(PageModel);
         }
 
-        public IActionResult BurialView()
+        public IActionResult BurialView(long id)
         {
-            
-            return View();
+            Burialmain burial = context.Burialmain.Where(x => x.Id == id).FirstOrDefault();
+            return View(burial);
         }
 
         [Authorize]

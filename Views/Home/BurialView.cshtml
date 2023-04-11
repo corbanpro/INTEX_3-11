@@ -4,33 +4,26 @@
 @{
     ViewData["Title"] = "View Burial";
 }
-@Model Burialmain
+
+@model Burialmain
 
 <div>
-    <h1>@Model.Burialid</h1>
-    @*<h1>
-            {Burial ID (SquareNorthSouth, NorthSouth, SquareEastWest, EastWest, Area, Burial Number)}
-        </h1>*@
+    <h1>@Model.Squarenorthsouth @Model.Northsouth @Model.Squareeastwest @Model.Eastwest @Model.Area @Model.Burialnumber</h1>
 <ul>
-    <li>Sex: @Model.Sex</li>
-    @*<li>Textile Color: @Model.TextileColor</li>*@
     @*<li>Textile Structure: @Model.TextileStructure</li>*@
-    <li>Burial Depth: @Model.Depth</li>
     @*<li>Estimate Stature: @Model.EstimateStature</li>*@
-    <li>Age At Death: @Model.Ageatdeath</li>
-    <li>Head Direction: @Model.Headdirection</li>
     @*<li>Textile Function: @Model.TextileFunction</li>*@
-    <li>Hair Color: @Model.Haircolor</li>
 </ul>
 </div>
-@*<div class="row">
+
+<div class="row">
     <div class="col-6">
         <div class="row">
             <div class="col-5">
                 Sex
             </div>
             <div class="col">
-                {Sex}
+                @Model.Sex
             </div>
         </div>
 
@@ -57,25 +50,15 @@
                 Burial Depth
             </div>
             <div class="col">
-                {Burial Depth}
+                @Model.Depth
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-5">
-                Estimate Stature
-            </div>
-            <div class="col">
-                {Estimate Stature}
-            </div>
-        </div>
-
         <div class="row">
             <div class="col-5">
                 Age at Death
             </div>
             <div class="col">
-                {Age at Death}
+                @Model.Ageatdeath
             </div>
         </div>
 
@@ -84,7 +67,7 @@
                 Head Direction
             </div>
             <div class="col">
-                {Head Direction}
+                @Model.Headdirection
             </div>
         </div>
 
@@ -102,7 +85,7 @@
                 Hair Color
             </div>
             <div class="col">
-                {Hair Color}
+                @Model.Haircolor
             </div>
         </div>
     </div>
@@ -110,6 +93,7 @@
     <div class="col-6">
         <img src="" />
     </div>
-</div>*@
+</div>
+
 
 
