@@ -5,36 +5,38 @@
     ViewData["Title"] = "View Burial";
 }
 
-@model Burialmain
+@model FullBurial
 
 <div>
-    <h1>@Model.Squarenorthsouth @Model.Northsouth @Model.Squareeastwest @Model.Eastwest @Model.Area @Model.Burialnumber</h1>
-    <ul>
-        @*<li>Textile Structure: @Model.TextileStructure</li>*@
-        @*<li>Estimate Stature: @Model.EstimateStature</li>*@
-        @*<li>Textile Function: @Model.TextileFunction</li>*@
-    </ul>
+    <h1>@Model.Burialmain.Squarenorthsouth @Model.Burialmain.Northsouth @Model.Burialmain.Squareeastwest @Model.Burialmain.Eastwest @Model.Burialmain.Area @Model.Burialmain.Burialnumber</h1>
+<ul>
+    @*<li>Textile Structure: @Model.TextileStructure</li>*@
+    @*<li>Estimate Stature: @Model.EstimateStature</li>*@
+    @*<li>Textile Function: @Model.TextileFunction</li>*@
+</ul>
 </div>
-<p>
-    <div class="row">
-        <div class="col-6">
-            <div class="row">
-                <div class="col-5">
-                    Sex
-                </div>
-                <div class="col">
-                    @Model.Sex
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-5">
-                    Textile color
-                </div>
-                <div class="col">
-                    {Textile color}
-                </div>
+@*<h1>@Model.BurialmainTextile.MainTextileid</h1>*@
+
+<div class="row">
+    <div class="col-6">
+        <div class="row">
+            <div class="col-5">
+                Sex
             </div>
+            <div class="col">
+                @Model.Burialmain.Sex
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-5">
+                Textile color
+            </div>
+            <div class="col">
+                {Textile color}
+            </div>
+        </div>
 
             <div class="row">
                 <div class="col-5">
@@ -45,40 +47,40 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-5">
-                    Burial Depth
-                </div>
-                <div class="col">
-                    @Model.Depth
-                </div>
+        <div class="row">
+            <div class="col-5">
+                Burial Depth
             </div>
-            <div class="row">
-                <div class="col-5">
-                    Age at Death
-                </div>
-                <div class="col">
-                    @Model.Ageatdeath
-                </div>
+            <div class="col">
+                @Model.Burialmain.Depth
             </div>
+        </div>
+        <div class="row">
+            <div class="col-5">
+                Age at Death
+            </div>
+            <div class="col">
+                @Model.Burialmain.Ageatdeath
+            </div>
+        </div>
 
-            <div class="row">
-                <div class="col-5">
-                    Head Direction
-                </div>
-                <div class="col">
-                    @Model.Headdirection
-                </div>
+        <div class="row">
+            <div class="col-5">
+                Head Direction
             </div>
+            <div class="col">
+                @Model.Burialmain.Headdirection
+            </div>
+        </div>
 
-            <div class="row">
-                <div class="col-5">
-                    Textile Function
-                </div>
-                <div class="col">
-                    {Textile Function}
-                </div>
+        <div class="row">
+            <div class="col-5">
+                Textile Function
             </div>
+            <div class="col">
+                {Textile Function}
+            </div>
+        </div>
 
             <div class="row">
                 <div class="col-5">
@@ -106,14 +108,10 @@
             </div>
         </div>
 
-
-        <div class="col-6">
-            <img src="" />
-        </div>
-        <br />
-
+    <div class="col-6">
+        <img src="" />
     </div>
-</p>
-<div> <button class="btn btn-primary" type="button"><a asp-action="BurialList">Back</a></button></div>
+</div>
+
 
 
