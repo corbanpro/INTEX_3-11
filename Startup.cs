@@ -33,15 +33,18 @@ namespace INTEX_3_11
                 // This lambda determines whether user consent for non-essential 
                 // cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
+                options.ConsentCookie.Expiration = TimeSpan.FromMinutes(5);
                 // requires using Microsoft.AspNetCore.Http;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDefaultIdentity<IdentityUser>(options => 
+            options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
 
@@ -87,18 +90,19 @@ namespace INTEX_3_11
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
             app.UseRouting();
             
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.Use(async (context, next) =>
-            {
-                Console.WriteLine("Adding CSP header...");
-                context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; frame-src 'self'");
-
-                await next();
-            });
+            // app.Use(async (context, next) =>
+            // {
+            //     Console.WriteLine("Adding CSP header...");
+            //     context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; frame-src 'self'");
+            // 
+            //     await next();
+            // });
 
             app.UseEndpoints(endpoints =>
             {
