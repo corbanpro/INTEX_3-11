@@ -22,7 +22,7 @@
     <div class="col-6">
         <div class="row">
             <div class="col-5">
-                Sex
+                Sex:
             </div>
             <div class="col">
                 @Model.Burialmain.Sex
@@ -31,25 +31,25 @@
 
         <div class="row">
             <div class="col-5">
-                Textile color
+                Textile color:
             </div>
             <div class="col">
-                {Textile color}
+                @Model.Color
             </div>
         </div>
 
             <div class="row">
                 <div class="col-5">
-                    Textile structure
+                    Textile structure:
                 </div>
                 <div class="col">
-                    {Textile structure}
+                    @Model.Structure
                 </div>
             </div>
 
         <div class="row">
             <div class="col-5">
-                Burial Depth
+                Burial Depth:
             </div>
             <div class="col">
                 @Model.Burialmain.Depth
@@ -57,7 +57,7 @@
         </div>
         <div class="row">
             <div class="col-5">
-                Age at Death
+                Age at Death:
             </div>
             <div class="col">
                 @Model.Burialmain.Ageatdeath
@@ -66,7 +66,7 @@
 
         <div class="row">
             <div class="col-5">
-                Head Direction
+                Head Direction:
             </div>
             <div class="col">
                 @Model.Burialmain.Headdirection
@@ -75,43 +75,47 @@
 
         <div class="row">
             <div class="col-5">
-                Textile Function
+                Textile Function:
             </div>
             <div class="col">
-                {Textile Function}
+                @Model.Textilefunction
             </div>
         </div>
 
             <div class="row">
                 <div class="col-5">
-                    Hair Color
+                    Hair Color:
                 </div>
                 <div class="col">
-                    @Model.Haircolor
+                    @Model.Burialmain.Haircolor
                 </div>
             </div>
             <div class="row">
                 <div class="col-5">
-                    Field Notes
+                    Field Notes:
                 </div>
                 <div class="col">
-                    {notes}
+                    @Model.Burialmain.Text
                 </div>
             </div>
             <div class="row">
                 <div class="col-5">
-                    Measurements
+                    Measurements:
                 </div>
                 <div class="col">
                    {Measurements}
                 </div>
             </div>
         </div>
+    <br />
+    
 
     <div class="col-6">
         <img src="" />
     </div>
+    <br />
 </div>
-
+<br />
+<button type="button" class="btn btn-primary"><a asp-action="BurialList">Back</a></button>
 
 
