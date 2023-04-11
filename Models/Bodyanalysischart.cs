@@ -9,9 +9,9 @@ namespace INTEX_3_11.Models
 {
     public partial class Bodyanalysischart
     {
-        public long Squarenorthsouth { get; set; }
+        public string Squarenorthsouth { get; set; }
         public string Northsouth { get; set; }
-        public long Squareeastwest { get; set; }
+        public string Squareeastwest { get; set; }
         public string Eastwest { get; set; }
         public string Area { get; set; }
         public long Burialnumber { get; set; }
