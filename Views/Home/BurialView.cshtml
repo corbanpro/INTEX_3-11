@@ -5,16 +5,18 @@
     ViewData["Title"] = "View Burial";
 }
 
-@model Burialmain
+@model FullBurial
 
 <div>
-    <h1>@Model.Squarenorthsouth @Model.Northsouth @Model.Squareeastwest @Model.Eastwest @Model.Area @Model.Burialnumber</h1>
+    <h1>@Model.Burialmain.Squarenorthsouth @Model.Burialmain.Northsouth @Model.Burialmain.Squareeastwest @Model.Burialmain.Eastwest @Model.Burialmain.Area @Model.Burialmain.Burialnumber</h1>
 <ul>
     @*<li>Textile Structure: @Model.TextileStructure</li>*@
     @*<li>Estimate Stature: @Model.EstimateStature</li>*@
     @*<li>Textile Function: @Model.TextileFunction</li>*@
 </ul>
 </div>
+
+@*<h1>@Model.BurialmainTextile.MainTextileid</h1>*@
 
 <div class="row">
     <div class="col-6">
@@ -23,7 +25,7 @@
                 Sex
             </div>
             <div class="col">
-                @Model.Sex
+                @Model.Burialmain.Sex
             </div>
         </div>
 
@@ -50,7 +52,7 @@
                 Burial Depth
             </div>
             <div class="col">
-                @Model.Depth
+                @Model.Burialmain.Depth
             </div>
         </div>
         <div class="row">
@@ -58,7 +60,7 @@
                 Age at Death
             </div>
             <div class="col">
-                @Model.Ageatdeath
+                @Model.Burialmain.Ageatdeath
             </div>
         </div>
 
@@ -67,7 +69,7 @@
                 Head Direction
             </div>
             <div class="col">
-                @Model.Headdirection
+                @Model.Burialmain.Headdirection
             </div>
         </div>
 
@@ -85,7 +87,7 @@
                 Hair Color
             </div>
             <div class="col">
-                @Model.Haircolor
+                @Model.Burialmain.Haircolor
             </div>
         </div>
     </div>

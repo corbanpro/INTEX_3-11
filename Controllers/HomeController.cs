@@ -58,8 +58,24 @@ namespace INTEX_3_11.Controllers
 
         public IActionResult BurialView(long id)
         {
-            Burialmain burial = context.Burialmain.Where(x => x.Id == id).FirstOrDefault();
-            return View(burial);
+            FullBurial FullBurial = new FullBurial();
+
+            FullBurial.Burialmain = context.Burialmain.Where(x => x.Id == id).FirstOrDefault();
+
+            try {
+                FullBurial.BurialmainTextile = context.BurialmainTextile.Where(x => x.MainBurialmainid == id).FirstOrDefault();
+                FullBurial.Textile = context.Textile.Where(x => x.Textileid == FullBurial.BurialmainTextile.MainTextileid).FirstOrDefault();
+                FullBurial.Textilefunction = context.Textilefunction.Where(x => x.Id == FullBurial.Textile.Id).FirstOrDefault();
+                FullBurial.ColorTextile = context.ColorTextile.Where(x => x.MainColorid == FullBurial.Textile.Id).FirstOrDefault();
+                FullBurial.Color = context.Color.Where(x => x.Colorid == FullBurial.ColorTextile.MainColorid).FirstOrDefault();
+                FullBurial.StructureTextile = context.StructureTextile.Where(x => x.MainTextileid == FullBurial.Textile.Id).FirstOrDefault();
+                FullBurial.Structure = context.Structure.Where(x => x.Structureid == FullBurial.StructureTextile.MainStructureid).FirstOrDefault();
+            } catch
+            {
+
+            }
+
+            return View(FullBurial);
         }
 
         [Authorize]
