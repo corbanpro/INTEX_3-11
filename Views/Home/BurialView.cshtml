@@ -4,23 +4,23 @@
 @{
     ViewData["Title"] = "View Burial";
 }
-@Model ? 
+@Model Burialmain
 
 <div>
-    <h1>@Model.BurialID</h1>
+    <h1>@Model.Burialid</h1>
     @*<h1>
             {Burial ID (SquareNorthSouth, NorthSouth, SquareEastWest, EastWest, Area, Burial Number)}
         </h1>*@
 <ul>
     <li>Sex: @Model.Sex</li>
-    <li>Textile Color: @Model.TextileColor</li>
-    <li>Textile Structure: @Model.TextileStructure</li>
-    <li>Burial Depth: @Model.BurialDepth</li>
-    <li>Estimate Stature: @Model.EstimateStature</li>
-    <li>Age At Death: @Model.AgeAtDeath</li>
-    <li>Head Direction: @Model.HeadDirection</li>
-    <li>Textile Function: @Model.TextileFunction</li>
-    <li>Hair Color: @Model.HairColor</li>
+    @*<li>Textile Color: @Model.TextileColor</li>*@
+    @*<li>Textile Structure: @Model.TextileStructure</li>*@
+    <li>Burial Depth: @Model.Depth</li>
+    @*<li>Estimate Stature: @Model.EstimateStature</li>*@
+    <li>Age At Death: @Model.Ageatdeath</li>
+    <li>Head Direction: @Model.Headdirection</li>
+    @*<li>Textile Function: @Model.TextileFunction</li>*@
+    <li>Hair Color: @Model.Haircolor</li>
 </ul>
 </div>
 @*<div class="row">
