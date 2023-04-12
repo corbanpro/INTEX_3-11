@@ -171,19 +171,19 @@ namespace INTEX_3_11.Controllers
 
 
         [HttpPost]
-        public IActionResult AddData(NewEntry ne)
+        public IActionResult AddData(Burialmain newEntry)
         {
             //make sure its valid
             if (ModelState.IsValid)
             {
-                context.Add(ne);
+                newEntry.Id = context.Burialmain.OrderBy(x => x.Id).Last().Id + 1;
+                context.Add(newEntry);
                 context.SaveChanges();
-                return View("Confirmation", ne);
-
+                return View("Confirmation");
             }
             else
             {
-                return View(ne);
+                return View(newEntry);
             }
 
         }
