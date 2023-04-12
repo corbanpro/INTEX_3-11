@@ -31,29 +31,72 @@ namespace INTEX_3_11.Controllers
             return View();
         }
 
-        public IActionResult BurialList(string burialFilter, int pageNum = 1)
+        public IActionResult BurialList(string ageAtDeath, string sex, string depth, string Headdirection, string haircolor, int pageNum = 1)
         {
+            ViewBag.AgeAtDeath = ageAtDeath;
+            ViewBag.Sex = sex;
+            ViewBag.BurialDepth = depth;
+            ViewBag.Headdirection = Headdirection;
+            ViewBag.haircolor = haircolor;
             int pageSize = 40;
+           
+
+            var PageInfo = new PageInfo()
+            {
+                TotalNumBurials = context.Burialmain.Count(),
+                BurialsPerPage = pageSize,
+                CurrentPage = pageNum
+                
+            };
+           
             PageModel PageModel = new PageModel
             {
+
                 BurialList = context.Burialmain
                 .OrderBy(x => x.Id)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize)
                 .ToList(), 
-
-                PageInfo = new PageInfo()
-                {
-                    TotalNumBurials = 
-                        (burialFilter == null
-                            ? context.Burialmain.Count()
-                            : context.Burialmain.Count()),
-                    BurialsPerPage = pageSize,
-                    CurrentPage = pageNum
-                }
+                
+                PageInfo = PageInfo
+                       
+               
             };
 
+            if (!String.IsNullOrEmpty(ageAtDeath))
+            {
+                PageModel.BurialList = PageModel.BurialList.Where(x => x.Ageatdeath == ageAtDeath).ToList();
+            }
+            if (!String.IsNullOrEmpty(sex))
+            {
+                PageModel.BurialList = PageModel.BurialList.Where(x => x.Sex == sex).ToList();
+            }
+            if (!String.IsNullOrEmpty(Headdirection))
+            {
+                PageModel.BurialList = PageModel.BurialList.Where(x => x.Headdirection == Headdirection).ToList();
+            }
+            if (!String.IsNullOrEmpty(depth))
+            {
+                PageModel.BurialList = PageModel.BurialList.Where(x => x.Depth == depth).ToList();
+            }
+            if (!String.IsNullOrEmpty(haircolor))
+            {
+                PageModel.BurialList = PageModel.BurialList.Where(x => x.Haircolor == haircolor).ToList();
+            }
+
+
+
             return View(PageModel);
+        }
+
+        public IActionResult Search(string searching)
+        {
+            var Ageatdeath = from a in context.Burialmain select a;
+            if (!String.IsNullOrEmpty(searching))
+            {
+                Ageatdeath = Ageatdeath.Where(a => a.Ageatdeath.Contains(searching));
+            }
+            return View("BurialList", Ageatdeath.ToList());
         }
 
         public IActionResult BurialView(long id)
@@ -144,6 +187,8 @@ namespace INTEX_3_11.Controllers
             }
 
         }
+
+        
 
     }
 }
