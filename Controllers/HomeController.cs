@@ -163,7 +163,7 @@ namespace INTEX_3_11.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(long id)
         {
             var Editor = context.Burialmain.FirstOrDefault(x => x.Id == id);
             if (Editor == null)
