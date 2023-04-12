@@ -54,6 +54,7 @@ namespace INTEX_3_11.Models
         public virtual DbSet<TextilefunctionTextile> TextilefunctionTextile { get; set; }
         public virtual DbSet<Yarnmanipulation> Yarnmanipulation { get; set; }
         public virtual DbSet<YarnmanipulationTextile> YarnmanipulationTextile { get; set; }
+        public object Responses { get; internal set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
