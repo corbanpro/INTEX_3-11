@@ -3,7 +3,7 @@
 *@
 @{
 }
-@model NewEntry
+@model Burialmain
 @*@model FullBurial*@
 
 @*not yet functional!!*@
@@ -15,55 +15,237 @@
         @*validation makes so error messages show up*@
         @*<div asp-validation-summary="All"></div>*@
 
-        <label asp-for="Sex">Sex:</label>
-        <select asp-for="Sex">
-            <option value="U">Unknown</option>
-            <option value="M">Male</option>
-            <option value="F">Female</option>
-        </select><br />
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Squarenorthsouth">Square North South:</label>
+            </div>
+            <div class="col">
+                <select asp-for="Squarenorthsouth">
+                    <option>Select an Option:</option>
+                    <option value="N">North</option>
+                    <option value="S">South</option>
+                </select>
+            </div>
+        </div>
 
-        <label asp-for="Color">Textile Color:</label>
-        <input asp-for="Color" /><br />
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Northsouth" >North South:</label>
+            </div>
+            <div class="col">
+                <input asp-for="Northsouth" type="number" />
+            </div>
+        </div>
 
-        <label asp-for="Structure">Textile Structure:</label>
-        <input asp-for="Structure" /><br />
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Squareeastwest">Square East West:</label>
+            </div>
+            <div class="col">
+                <select asp-for="Squareeastwest">
+                    <option>Select an Option:</option>
+                    <option value="W">W</option>
+                    <option value="E">E</option>
+                </select>
+            </div>
+        </div>
 
-        <label asp-for="Depth">Burial Depth:</label>
-        <input asp-for="Depth" /><br />
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Eastwest">East West:</label>
+            </div>
+            <div class="col">
+                <input asp-for="Eastwest" type="number" />
+            </div>
+        </div>
 
-        <label asp-for="Ageatdeath">Age at death:</label>
-        <select asp-for="Ageatdeath">
-            <option value="U">Unknown</option>
-            <option value="A">Adult(15+)</option>
-            <option value="C">Child(3-15)</option>
-            <option value="I">Infant(1-3)</option>
-            <option value="N">Newborn(0-1)</option>
-        </select><br />
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Area">Area:</label>
+            </div>
+            <div class="col">
+                <select asp-for="Area">
+                    <option>Select an Option:</option>
+                    <option value="NW">NW</option>
+                    <option value="NE">NE</option>
+                    <option value="SW">SW</option>
+                    <option value="SE">SE</option>
+                </select>
+            </div>
+        </div>
 
-        <label asp-for="Headdirection">Head Direction</label>
-        <select asp-for="Headdirection">
-            <option value="U">Unknown</option>
-            <option value="N">North</option>
-            <option value="E">East</option>
-            <option value="S">South</option>
-            <option value="W">West</option>
-        </select><br />
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Burialnumber">Burial Number:</label>
+            </div>
+            <div class="col">
+                <input asp-for="Burialnumber" type="number" />
+            </div>
+        </div>
 
-        <label asp-for="Textilefunction">Textile Function:</label>
-        <input asp-for="Textilefunction" /><br />
+        <br /><br />
 
-        <label asp-for="Haircolor">Hair Color:</label>
-        <select asp-for="Haircolor">
-            <option value="U">Unknown</option>
-            <option value="B">Brown</option>
-            <option value="K">Black</option>
-            <option value="A">Brown-Red</option>
-            <option value="R">Red</option>
-            <option value="D">Blond</option>
-        </select><br />
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Headdirection">Head direction:</label>
+            </div>
+            <div class="col">
+                <input asp-for="Headdirection"/>
+            </div>
+        </div>
 
-        <label asp-for="Text">Field Notes:</label>
-        <input asp-for="Text" /><br />
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Westtohead">West to head:</label>
+            </div>
+            <div class="col">
+                <input asp-for="Westtohead" type="number" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Southtohead">South to head:</label>
+            </div>
+            <div class="col">
+                <input asp-for="Southtohead" type="number" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Westtofeet">West to feet:</label>
+            </div>
+            <div class="col">
+                <input asp-for="Westtofeet" type="number" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Southtofeet">South to feet:</label>
+            </div>
+            <div class="col">
+                <input asp-for="Southtofeet" type="number" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Depth">Depth(m):</label>
+            </div>
+            <div class="col">
+                <input asp-for="Depth" type="number" />
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Sex">Sex:</label>
+            </div>
+            <div class="col">
+                <select asp-for="Sex">
+                    <option>Select an Option:</option>
+                    <option value="U">Unknown</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Ageatdeath">Age at death:</label>
+            </div>
+            <div class="col">
+                <select asp-for="Ageatdeath">
+                    <option>Select an Option:</option>
+                    <option value="U">Unknown</option>
+                    <option value="A">Adult(15+)</option>
+                    <option value="C">Child(3-15)</option>
+                    <option value="I">Infant(1-3)</option>
+                    <option value="N">Newborn(0-1)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Wrapping">Wrapping:</label>
+            </div>
+            <div class="col">
+                <select asp-for="Wrapping">
+                    <option>Select an Option:</option>
+                    <option value="F">Full or Nearly Full</option>
+                    <option value="H">Partial</option>
+                    <option value="B">Bones Only</option>
+                    <option value="U">Unknown</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Facebundles">Facebundles:</label>
+            </div>
+            <div class="col">
+                <input asp-for="Facebundles" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Preservation">Preservation:</label>
+            </div>
+            <div class="col">
+                <input asp-for="Preservation" />
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Haircolor">Hair Color:</label>
+            </div>
+            <div class="col">
+                <select asp-for="Haircolor">
+                    <option>Select an Option:</option>
+                    <option value="U">Unknown</option>
+                    <option value="B">Brown</option>
+                    <option value="K">Black</option>
+                    <option value="A">Brown-Red</option>
+                    <option value="R">Red</option>
+                    <option value="D">Blond</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Text">Field Notes:</label>
+            </div>
+            <div class="col">
+                <input asp-for="Text" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Fieldbookpage">Fieldbook Page:</label>
+            </div>
+            <div class="col">
+                <input asp-for="Fieldbookpage" type="number" />
+            </div>
+        </div>
+
+        <br />
 
         <button type="submit">Submit</button>
     </form>
