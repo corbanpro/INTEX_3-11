@@ -4,11 +4,19 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing.Template;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using System.Text.Json;
+using RestSharp;
+using Newtonsoft.Json;
+using System.Net;
+using System.Text;
 
 namespace INTEX_3_11.Controllers
 {
@@ -144,6 +152,110 @@ namespace INTEX_3_11.Controllers
             }
 
         }
+
+        [HttpGet] 
+        public IActionResult SupervisedAnalysis() 
+        {
+            ViewData["Prediction"] = null;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SupervisedAnalysis(SupervisedPrediction sp)
+        {
+
+
+            SupervisedPredictionJson spj = new SupervisedPredictionJson();
+
+            spj.depth = sp.depth;
+            spj.southtohead = sp.southtohead;
+            spj.westtohead = sp.westtohead;
+            spj.length = sp.length;
+            spj.westtofeet = sp.westtofeet;
+            spj.southtofeet = sp.southtofeet;
+            spj.FemurHeadDiameter = sp.FemurHeadDiameter;
+            spj.HumerusLength = sp.HumerusLength;
+            
+            if (sp.adultsubadult == "C")
+            {
+                spj.adultsubadult_C = 1.0;
+            } else
+            {
+                spj.adultsubadult_NLL = 1.0;
+            }
+
+            if (sp.haircolor == "B")
+            {
+                spj.haircolor_B = 1.0;
+            }
+            else if (sp.haircolor == "K")
+            {
+                spj.haircolor_K = 1.0;
+            }
+            else if (sp.haircolor == "D")
+            {
+                spj.haircolor_D = 1.0;
+            }
+            else if (sp.haircolor == "R")
+            {
+                spj.haircolor_R = 1.0;
+            }
+            else if (sp.haircolor == "U")
+            {
+                spj.haircolor_U = 1.0;
+            }
+
+            if (sp.textilefunction_value == "Fragmentary")
+            {
+                spj.textilefunction_value_Fragmentary = 1.0;
+            } 
+            else if (sp.textilefunction_value == "Other")
+            {
+                spj.textilefunction_value_Other = 1.0;
+            }
+            else if (sp.textilefunction_value == "Ribbon")
+            {
+                spj.textilefunction_value_Ribbon = 1.0;
+            }
+            else if (sp.textilefunction_value == "Tunic")
+            {
+                spj.textilefunction_value_Tunic = 1.0;
+            }
+
+            String product = System.Text.Json.JsonSerializer.Serialize<SupervisedPredictionJson>(spj);
+            product = product.Replace("adultsubadult_NLL", "adultsubadult_N LL");
+            var values = JsonConvert.DeserializeObject<Dictionary<string, string>>(product);
+            var content = new FormUrlEncodedContent(values);
+            string url = "http://44.213.194.242/predict";
+
+            WebClient webClient = new WebClient();
+            byte[] resByte;
+            string resString;
+            byte[] reqString;
+
+
+            webClient.Headers["content-type"] = "application/json";
+            reqString = Encoding.Default.GetBytes(JsonConvert.SerializeObject(values, Formatting.Indented));
+            resByte = webClient.UploadData(url, "post", reqString);
+            resString = Encoding.Default.GetString(resByte);
+            webClient.Dispose();
+
+            resString = resString.Replace("{\"prediction\":\"", "");
+            resString = resString.Replace("\"}", "");
+
+            ViewData["Prediction"] = resString;
+
+
+
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult UnsupervisedAnalysis()
+        {
+            return View();
+        }
+
 
     }
 }
