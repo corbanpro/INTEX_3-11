@@ -173,41 +173,15 @@ namespace INTEX_3_11.Controllers
             return View("AddData", Editor);
         }
 
-
         [HttpPost]
-        public IActionResult EditData(int id)
+        public IActionResult Edit(Burialmain ar)
         {
-            var Editor = context.Burialmain.FirstOrDefault(x => x.Id == id);
-            if (Editor == null)
-            {
-                return NotFound();
-            }
+            context.Update(ar);
+            context.SaveChanges();
 
-            // Populate the fields of the Editor object
-            Editor.Squarenorthsouth = Editor.Squarenorthsouth;
-            Editor.Northsouth = Editor.Northsouth;
-            Editor.Squareeastwest = Editor.Squareeastwest;
-            Editor.Eastwest = Editor.Eastwest;
-            Editor.Area = Editor.Area;
-            Editor.Burialnumber = Editor.Burialnumber;
-            Editor.Headdirection = Editor.Headdirection;
-            Editor.Westtohead = Editor.Westtohead;
-            Editor.Southtohead = Editor.Southtohead;
-            Editor.Westtofeet = Editor.Westtofeet;
-            Editor.Southtofeet = Editor.Southtofeet;
-            Editor.Depth = Editor.Depth;
-            Editor.Sex = Editor.Sex;
-            Editor.Ageatdeath = Editor.Ageatdeath;
-            Editor.Wrapping = Editor.Wrapping;
-            Editor.Facebundles = Editor.Facebundles;
-            Editor.Preservation = Editor.Preservation;
-            Editor.Haircolor = Editor.Haircolor;
-            Editor.Text = Editor.Text;
-            Editor.Fieldbookpage = Editor.Fieldbookpage;
-
-
-            return View("AddData", Editor);
+            return RedirectToAction("BurialList");
         }
+
 
     }
 }
