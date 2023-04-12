@@ -1,8 +1,10 @@
-﻿using INTEX_3_11.Models;
+﻿using AspNetCore;
+using INTEX_3_11.Models;
 using INTEX_3_11.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing.Template;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -143,6 +145,22 @@ namespace INTEX_3_11.Controllers
                 return View(newEntry);
             }
 
+        }
+
+        [HttpGet]
+        public IActionResult Delete (int id)
+        {
+            
+            var burial = context.Burialmain.Single(x => x.Id == id);
+            return View(burial);
+        }
+
+        [HttpPost]
+        public IActionResult Delete (Burialmain ar)
+        {
+            context.Remove(ar);
+            context.SaveChanges();
+            return RedirectToAction("BurialList");
         }
 
     }
