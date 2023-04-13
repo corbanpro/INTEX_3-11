@@ -50,8 +50,11 @@
                     <div class="card-body">
                         <p class="card-text">This mummy was a <strong>@b.Sex</strong> <strong>@b.Ageatdeath</strong> with <strong>@b.Haircolor</strong> hair and <strong>@b.Wrapping</strong> wrapping found in the <strong>@b.Area</strong> area.</p>
                         <a class="btn btn-primary" href="@Url.Action("BurialView", new { id = b.Id })">Read More!</a>
-                        <a class="btn btn-primary" href="@Url.Action("Delete", new { id = b.Id })">Delete</a>
-                        <a class="btn btn-primary" href="@Url.Action("AddData", new { id = b.Id })">Edit</a>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <a class="btn btn-primary" href="@Url.Action("Delete", new { id = b.Id })">Delete</a>
+                            <a class="btn btn-primary" href="@Url.Action("AddData", new { id = b.Id })">Edit</a>
+                        }
 
                     </div>
                 </div>

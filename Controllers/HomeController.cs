@@ -300,9 +300,9 @@ namespace INTEX_3_11.Controllers
             return View();
         }
 
-
         [HttpGet]
-        public IActionResult Delete (int id)
+        [Authorize]
+        public IActionResult Delete (long id)
         {
             
             var burial = context.Burialmain.Single(x => x.Id == id);
@@ -310,6 +310,7 @@ namespace INTEX_3_11.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Delete (Burialmain ar)
         {
             context.Remove(ar);
@@ -318,7 +319,8 @@ namespace INTEX_3_11.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        [Authorize]
+        public IActionResult Edit(long id)
         {
             var Editor = context.Burialmain.FirstOrDefault(x => x.Id == id);
             if (Editor == null)
@@ -328,9 +330,9 @@ namespace INTEX_3_11.Controllers
             return View("AddData", Editor);
         }
 
-
         [HttpPost]
-        public IActionResult EditData(int id)
+        [Authorize]
+        public IActionResult EditData(long id)
         {
             var Editor = context.Burialmain.FirstOrDefault(x => x.Id == id);
             if (Editor == null)
