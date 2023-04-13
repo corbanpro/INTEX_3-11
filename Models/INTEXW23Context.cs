@@ -61,7 +61,7 @@ namespace INTEX_3_11.Models
             if (!optionsBuilder.IsConfigured)
             {
                 //optionsBuilder.UseNpgsql("Server=localhost;Port=5433;Database=INTEXW23;userId=postgres;Password=postgres;");
-                optionsBuilder.UseNpgsql("Server=intexrds.cysmgoujcrd4.us-east-2.rds.amazonaws.com;Port=5432;Database=INTEXW23;userId=postgres;Password=password123;sslmode=Require;Trust Server Certificate=true");
+                optionsBuilder.UseNpgsql("Server=awseb-e-iswf3ewdpx-stack-awsebrdsdatabase-d913gzzkez1h.ccg49g6j5feb.us-east-1.rds.amazonaws.com;Port=5432;Database=ebdb;userId=postgres;Password=password123;sslmode=Require;Trust Server Certificate=true");
 
             }
         }
