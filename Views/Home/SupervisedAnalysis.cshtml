@@ -1,0 +1,143 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model SupervisedPrediction
+<h1>Enter Osteology/Burial Information</h1>
+
+
+<div>
+    <form method="post">
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="depth">Depth(m):</label>
+            </div>
+            <div class="col">
+                <input asp-for="depth" type="number" step="any" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="southtohead">South to head:</label>
+            </div>
+            <div class="col">
+                <input asp-for="southtohead" type="number" step="any" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="westtohead">West to head:</label>
+            </div>
+            <div class="col">
+                <input asp-for="westtohead" type="number" step="any" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="length">Length:</label>
+            </div>
+            <div class="col">
+                <input asp-for="length" type="number" step="any" />
+            </div>
+        </div>   
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="westtofeet">West to feet:</label>
+            </div>
+            <div class="col">
+                <input asp-for="westtofeet" type="number" step="any" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="southtofeet">South to feet:</label>
+            </div>
+            <div class="col">
+                <input asp-for="southtofeet" type="number" step="any" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="FemurHeadDiameter">Femur Head Diameter:</label>
+            </div>
+            <div class="col">
+                <input asp-for="FemurHeadDiameter" type="number" step="any" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="HumerusLength">Humerus Length:</label>
+            </div>
+            <div class="col">
+                <input asp-for="HumerusLength" type="number" step="any" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="adultsubadult">Adult Sub Adult:</label>
+            </div>
+            <div class="col">
+                <select asp-for="adultsubadult">
+                    <option>Select an Option:</option>
+                    <option value="N LL">Adult</option>
+                    <option value="C">Not Adult</option>
+                </select>
+            </div>
+        </div>
+
+        
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="haircolor">Hair Color:</label>
+            </div>
+            <div class="col">
+                <select asp-for="haircolor">
+                    <option>Select an Option:</option>
+                    <option value="U">Unknown</option>
+                    <option value="B">Brown</option>
+                    <option value="K">Black</option>
+                    <option value="A">Brown-Red</option>
+                    <option value="R">Red</option>
+                    <option value="D">Blond</option>
+                </select>
+            </div>
+        </div>
+
+        
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="textilefunction_value">Textile Function:</label>
+            </div>
+            <div class="col">
+                <select asp-for="textilefunction_value">
+                    <option>Select an Option:</option>
+                    <option value="Fragmentary">Fragmentary</option>
+                    <option value="Ribbon">Ribbon</option>
+                    <option value="Tunic">Tunic</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+        </div>
+        
+        <br />
+
+        <button type="submit">Submit</button>
+    </form>
+
+    @if (ViewData["Prediction"] != null) {
+        <br />
+        <h4>Prediction: @ViewData["Prediction"]</h4>
+
+    }
+    <br />
+</div>
