@@ -6,7 +6,7 @@ namespace INTEX_3_11.Models
     {
         public Burialmain Burialmain { get; set; }
         public Bodyanalysischart Bodyanalysischart { get; set; }
-        public BurialmainTextile? BurialmainTextile { get; set; }
+        public BurialmainTextile BurialmainTextile { get; set; }
         public Textile Textile { get; set; }
         public TextilefunctionTextile TextilefunctionTextile { get; set; }
         public Textilefunction Textilefunction { get; set; }

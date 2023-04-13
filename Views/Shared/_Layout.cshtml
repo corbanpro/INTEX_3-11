@@ -37,6 +37,16 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="UnsupervisedAnalysis">Unsupervised Prediction</a>
                         </li>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="AddData">Add Data</a>
+
+
+                            </li>
+                        }
+                        
+
 
                     </ul>
                 </div>

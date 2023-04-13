@@ -52,6 +52,7 @@ namespace INTEX_3_11.Controllers
                 .Where(x => x.Depth == depth || depth == null)
                 .Where(x => x.Headdirection == Headdirection || Headdirection == null)
                 .Where(x => x.Haircolor == haircolor || haircolor == null)
+                .Where(x => x.Id == 19140298416325764)
                 .OrderBy(x => x.Id)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize)
@@ -94,24 +95,29 @@ namespace INTEX_3_11.Controllers
 
         public IActionResult BurialView(long id)
         {
+
+
             FullBurial FullBurial = new FullBurial();
 
             FullBurial.Burialmain = context.Burialmain.Where(x => x.Id == id).FirstOrDefault();
 
-            try {
-                FullBurial.BurialmainTextile = context.BurialmainTextile.Where(x => x.MainBurialmainid == id).FirstOrDefault();
-                FullBurial.Textile = context.Textile.Where(x => x.Textileid == FullBurial.BurialmainTextile.MainTextileid).FirstOrDefault();
-            }catch 
+            try
             {
-                FullBurial.BurialmainTextile = new BurialmainTextile(); 
-                FullBurial.Textile = new Textile(); 
+                FullBurial.BurialmainTextile = context.BurialmainTextile.Where(x => x.MainBurialmainid == id).FirstOrDefault();
+                FullBurial.Textile = context.Textile.Where(x => x.Id == FullBurial.BurialmainTextile.MainTextileid).FirstOrDefault();
+            }
+            catch
+            {
+                FullBurial.BurialmainTextile = new BurialmainTextile();
+                FullBurial.Textile = new Textile();
             }
 
             try
             {
                 FullBurial.TextilefunctionTextile = context.TextilefunctionTextile.Where(x => x.MainTextileid == FullBurial.Textile.Id).FirstOrDefault();
                 FullBurial.Textilefunction = context.Textilefunction.Where(x => x.Id == FullBurial.TextilefunctionTextile.MainTextilefunctionid).FirstOrDefault();
-            }catch 
+            }
+            catch
             {
                 FullBurial.TextilefunctionTextile = new TextilefunctionTextile();
                 FullBurial.Textilefunction = new Textilefunction();
@@ -121,7 +127,8 @@ namespace INTEX_3_11.Controllers
             {
                 FullBurial.ColorTextile = context.ColorTextile.Where(x => x.MainColorid == FullBurial.Textile.Id).FirstOrDefault();
                 FullBurial.Color = context.Color.Where(x => x.Colorid == FullBurial.ColorTextile.MainColorid).FirstOrDefault();
-            }catch 
+            }
+            catch
             {
                 FullBurial.ColorTextile = new ColorTextile();
                 FullBurial.Color = new Color();
@@ -131,18 +138,19 @@ namespace INTEX_3_11.Controllers
             {
                 FullBurial.StructureTextile = context.StructureTextile.Where(x => x.MainTextileid == FullBurial.Textile.Id).FirstOrDefault();
                 FullBurial.Structure = context.Structure.Where(x => x.Structureid == FullBurial.StructureTextile.MainStructureid).FirstOrDefault();
-            }catch 
+            }
+            catch
             {
                 FullBurial.StructureTextile = new StructureTextile();
-                FullBurial.Structure = new Structure(); 
+                FullBurial.Structure = new Structure();
             }
 
             try
             {
                 FullBurial.Bodyanalysischart = context.Bodyanalysischart
                     .Where(
-                        x => x.Northsouth == FullBurial.Burialmain.Northsouth & 
-                        x.Eastwest == FullBurial.Burialmain.Eastwest & 
+                        x => x.Northsouth == FullBurial.Burialmain.Northsouth &
+                        x.Eastwest == FullBurial.Burialmain.Eastwest &
                         x.Squareeastwest == FullBurial.Burialmain.Squareeastwest &
                         x.Squarenorthsouth == FullBurial.Burialmain.Squarenorthsouth)
                     .FirstOrDefault();
@@ -152,17 +160,23 @@ namespace INTEX_3_11.Controllers
                 FullBurial.Bodyanalysischart = new Bodyanalysischart();
             }
 
-
             return View(FullBurial);
         }
 
+
+
+        /*
+                    
+        */
+
         [Authorize]
+        [HttpGet]
         public IActionResult AddData()
         {
             return View();
         }
 
-
+        [Authorize]
         [HttpPost]
         public IActionResult AddData(Burialmain newEntry)
         {

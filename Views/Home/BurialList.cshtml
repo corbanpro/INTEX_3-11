@@ -14,14 +14,14 @@
             <div class="col-md-4 mb-4">
                 <h3>Filter</h3>
                 <form asp-action="BurialList" asp-controller="Home" method="get">
-                    <input class="m-1" type="text" name="ageAtDeath" placeholder="Age at Death" />
-                    <input class="m-1" type="text" name="sex" placeholder="Sex">
-                    <input class="m-1" type="text" name="Headdirection" placeholder="Head Direction" />
-                    <input class="m-1" type="text" name="haircolor" placeholder="Hair Color" />
-                    <input class="m-1" type="text" name="depth" placeholder="Burial Depth" />
+                    <input class="m-1" type="text" name="ageAtDeath" placeholder="Age at Death" value="@Model.Filter.ageAtDeath" />
+                    <input class="m-1" type="text" name="sex" placeholder="Sex" value="@Model.Filter.sex" />
+                    <input class="m-1" type="text" name="Headdirection" placeholder="Head Direction" value="@Model.Filter.Headdirection" />
+                    <input class="m-1" type="text" name="haircolor" placeholder="Hair Color" value="@Model.Filter.haircolor" />
+                    <input class="m-1" type="text" name="depth" placeholder="Burial Depth" value="@Model.Filter.depth" />
                     <input class="m-1" type="hidden" name="pageNum" value="@Model.PageInfo.CurrentPage" />
                     <br />
-                    <input type="submit" value="search" class="btn btn-primary m-1" />
+                    <input type="submit" value="Search" class="btn btn-primary m-1" />
                 </form>
 
             </div>
@@ -57,7 +57,7 @@
                                 </div>
                                 <br>
                                 
-                                <a class="btn btn-primary" asp-action="BurialView" asp-route-id="@b.Id">Read More!</a>
+                                <a class="btn btn-primary" asp-action="BurialView" asp-route-id="@b.Id">Read More</a>
                                 @if (SignInManager.IsSignedIn(User))
                                 {
                                     <a class="btn btn-primary" asp-action="Delete" asp-route-id="@b.Id" >Delete</a>

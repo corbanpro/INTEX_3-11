@@ -10,7 +10,6 @@
                 Hello @User.Identity.Name!
             </a>
             <div class="dropdown-menu" aria-labelledby="accountDropdown">
-                <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="AddData">Add Data</a>
                 <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Manage Account</a>
                 <form class="form-inline dropdown-item" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                     <button type="submit" class="btn btn-link">Logout</button>
