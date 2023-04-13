@@ -5,96 +5,77 @@
 }
 @*@model IEnumerable<FullBurial>*@
 
-@using (Html.BeginForm("BurialList", "Home", FormMethod.Get))
-{
-    @Html.TextBox("ageAtDeath")
-    <label>Age at Death</label>
-    <input type="hidden" name="pageNum" value="@Model.PageInfo.CurrentPage" />
-    <input type="submit" value="search" />
-    <br />
-
-    @Html.TextBox("sex")
-    <label>Sex</label>
-    <input type="hidden" name="pageNum" value="@Model.PageInfo.CurrentPage" />
-    <input type="submit" value="search" />
-    <br />
-
-    @Html.TextBox("depth")
-    <label>Burial Depth</label>
-    <input type="hidden" name="pageNum" value="@Model.PageInfo.CurrentPage" />
-    <input type="submit" value="search" />
-    <br />
-
-    @Html.TextBox("Headdirection")
-    <label>Head Direction</label>
-    <input type="hidden" name="pageNum" value="@Model.PageInfo.CurrentPage" />
-    <input type="submit" value="search" />
-    <br />
-
-    @Html.TextBox("haircolor")
-    <label>Hair Color</label>
-    <input type="hidden" name="pageNum" value="@Model.PageInfo.CurrentPage" />
-    <input type="submit" value="search" />
-}
 
 <div class="container mt-5">
     <h1 class="text-center mb-5">Burial List</h1>
-    <div class="row">
-        @foreach (Burialmain b in Model.BurialList)
-        {
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title m-0">Mummy @b.Squarenorthsouth @b.Northsouth @b.Squareeastwest @b.Eastwest @b.Area @b.Burialnumber</h4>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">This mummy was a <strong>@b.Sex</strong> <strong>@b.Ageatdeath</strong> with <strong>@b.Haircolor</strong> hair and <strong>@b.Wrapping</strong> wrapping found in the <strong>@b.Area</strong> area.</p>
-                        <a class="btn btn-primary" href="@Url.Action("BurialView", new { id = b.Id })">Read More!</a>
-                        @if (SignInManager.IsSignedIn(User))
-                        {
-                            <a class="btn btn-primary" href="@Url.Action("Delete", new { id = b.Id })">Delete</a>
-                            <a class="btn btn-primary" href="@Url.Action("AddData", new { id = b.Id })">Edit</a>
-                        }
 
-                    </div>
-                </div>
+    <div class="row">
+        <div class="col-3">
+            <div class="col-md-4 mb-4">
+                <h3>Filter</h3>
+                <form asp-action="BurialList" asp-controller="Home" method="get">
+                    <input class="m-1" type="text" name="ageAtDeath" placeholder="Age at Death" />
+                    <input class="m-1" type="text" name="sex" placeholder="Sex">
+                    <input class="m-1" type="text" name="Headdirection" placeholder="Head Direction" />
+                    <input class="m-1" type="text" name="haircolor" placeholder="Hair Color" />
+                    <input class="m-1" type="text" name="depth" placeholder="Burial Depth" />
+                    <input class="m-1" type="hidden" name="pageNum" value="@Model.PageInfo.CurrentPage" />
+                    <br />
+                    <input type="submit" value="search" class="btn btn-primary m-1" />
+                </form>
+
             </div>
-        }
+        </div>
+        <div class="col-9">
+            <div class="row">
+
+                @foreach (Burialmain b in Model.BurialList)
+                {
+                    if (b.Haircolor == "B") { b.Haircolor = "Brown"; } else if (b.Haircolor == "K") { b.Haircolor = "Black"; } else if (b.Haircolor == "A") { b.Haircolor = "Brown/Red"; } else if (b.Haircolor == "R") { b.Haircolor = "Red"; } else if (b.Haircolor == "D") { b.Haircolor = "Blond"; } else { b.Haircolor = "Unknown"; }
+                    if (b.Wrapping == "W") { b.Wrapping = "Full"; } else if (b.Wrapping == "H") { b.Wrapping = "Partial"; } else if (b.Wrapping == "W") { b.Wrapping = "Bones only"; } else if (b.Wrapping == "W") { b.Wrapping = "Full"; } else { b.Wrapping = "Unknown"; }
+                    if (b.Adultsubadult == "A") { b.Adultsubadult = "Adult"; } else if (b.Adultsubadult == "C") { b.Adultsubadult = "Child"; } else { b.Adultsubadult = "Unknown"; }
+                    if (b.Sex == "M") { b.Sex = "Male"; } else if (b.Sex == "F") { b.Sex = "Female"; } else { b.Sex = "Unknown"; }
+                    <div class="col-md-6 mb-6">
+                        <div class="card m-1">
+                            <div class="card-header">
+                                <h4 class="card-title m-0">Mummy @b.Squarenorthsouth @b.Northsouth @b.Squareeastwest @b.Eastwest @b.Area @b.Burialnumber</h4>
+                            </div>
+                            <div class="card-body" >
+                                <div class="row">
+                                    <div class="col-4">
+                                        Hair color:<br />
+                                        Wrapping:  <br />
+                                        Sex:       <br />
+                                        Age:
+                                    </div>
+                                    <div class="col">
+                                        @b.Haircolor <br>
+                                        @b.Wrapping <br>
+                                        @b.Sex <br>
+                                        @b.Adultsubadult
+                                    </div>
+                                </div>
+                                <br>
+                                
+                                <a class="btn btn-primary" asp-action="BurialView" asp-route-id="@b.Id">Read More!</a>
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@b.Id" >Delete</a>
+                                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@b.Id" >Edit</a>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
     </div>
+    
     <div class="d-flex justify-content-end mt-3">
         <div page-model="@Model" page-action="BurialList" page-classes-enabled="true"
              page-class="btn" page-class-normal="btn-outline-secondary"
              page-class-selected="btn-secondary" class="btn-group">
-
-            @*@if (!String.IsNullOrEmpty(ViewBag.AgeAtDeath))
-                {
-                    <a asp-action="BurialList" asp-route-ageAtDeath="@ViewBag.AgeAtDeath" asp-route-sex="@ViewBag.Sex" asp-route-pageNum="@(Model.PageInfo.CurrentPage - 1)">Previous</a>
-                }
-                else
-                {
-                    <a asp-action="BurialList" asp-route-pageNum="@(Model.PageInfo.CurrentPage - 1)">Previous</a>
-                }
-
-                @for (int i = 1; i <= Model.PageInfo.TotalPages; i++)
-                {
-                    if (!String.IsNullOrEmpty(ViewBag.AgeAtDeath))
-                    {
-                        <a asp-action="BurialList" asp-route-ageAtDeath="@ViewBag.AgeAtDeath" asp-route-sex="@ViewBag.Sex" asp-route-pageNum="@i">@i</a>
-                    }
-                    else
-                    {
-                        <a asp-action="BurialList" asp-route-pageNum="@i">@i</a>
-                    }
-                }
-
-                @if (!String.IsNullOrEmpty(ViewBag.AgeAtDeath))
-                {
-                    <a asp-action="BurialList" asp-route-ageAtDeath="@ViewBag.AgeAtDeath" asp-route-sex="@ViewBag.Sex" asp-route-pageNum="@(Model.PageInfo.CurrentPage + 1)">Next</a>
-                }
-                else
-                {
-                    <a asp-action="BurialList" asp-route-pageNum="@(Model.PageInfo.CurrentPage + 1)">Next</a>
-                }*@
         </div>
     </div>
 </div>
