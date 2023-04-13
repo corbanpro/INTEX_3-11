@@ -52,7 +52,6 @@ namespace INTEX_3_11.Controllers
                 .Where(x => x.Depth == depth || depth == null)
                 .Where(x => x.Headdirection == Headdirection || Headdirection == null)
                 .Where(x => x.Haircolor == haircolor || haircolor == null)
-                .Where(x => x.Id == 19140298416325764)
                 .OrderBy(x => x.Id)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize)
