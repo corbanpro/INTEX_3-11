@@ -44,7 +44,7 @@ namespace INTEX_3_11
          
 
             services.AddDefaultIdentity<IdentityUser>(options => 
-            options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
+            options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -100,7 +100,7 @@ namespace INTEX_3_11
             app.Use(async (context, next) =>
             {
                 Console.WriteLine("Adding CSP header...");
-                context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self'; font-src 'self'; img-src 'self'; frame-src 'self'");
+                context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline' 'sha256-aAvpPgsqZMh9ktCr5wFqc5rhFpxFaS4RcrjNhdX8cYQ='; style-src 'self'; font-src 'self'; img-src 'self'; frame-src 'self'");
             
                 await next();
             });
