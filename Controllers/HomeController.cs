@@ -42,14 +42,7 @@ namespace INTEX_3_11.Controllers
 
         public IActionResult BurialList(string ageAtDeath, string sex, string depth, string Headdirection, string haircolor, int pageNum = 1)
         {
-            ViewBag.AgeAtDeath = ageAtDeath;
-            ViewBag.Sex = sex;
-            ViewBag.BurialDepth = depth;
-            ViewBag.Headdirection = Headdirection;
-            ViewBag.haircolor = haircolor;
-
             int pageSize = 40;
-
 
             PageModel PageModel = new PageModel()
             {
