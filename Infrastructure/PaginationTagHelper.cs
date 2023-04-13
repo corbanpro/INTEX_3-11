@@ -26,7 +26,7 @@ namespace INTEX_3_11.Infrastructure
         [ViewContext]
         [HtmlAttributeNotBound]
         public ViewContext vc { get; set; }
-        public PageInfo PageModel { get; set; }
+        public PageModel PageModel { get; set; }
         public string PageAction { get; set; }
         public bool PageClassesEnabled { get; set; } = false;
         public string PageClass { get; set; }
@@ -39,16 +39,16 @@ namespace INTEX_3_11.Infrastructure
 
             TagBuilder final = new TagBuilder("div");
 
-            for (int i = 1; i <= PageModel.TotalPages; i++)
+            for (int i = 1; i <= PageModel.PageInfo.TotalPages; i++)
             {
                 TagBuilder tb = new TagBuilder("a");
 
 
-                tb.Attributes["href"] = uh.Action(PageAction, new { pageNum = i });
-                if (PageClassesEnabled)
-                {
-                    tb.AddCssClass(PageClass);
-                    tb.AddCssClass(i == PageModel.CurrentPage
+                tb.Attributes["href"] = uh.Action(PageAction, new { pageNum = i, ageAtDeath = PageModel.Filter.ageAtDeath, sex = PageModel.Filter.sex, depth = PageModel.Filter.depth, Headdirection = PageModel.Filter.Headdirection, haircolor = PageModel.Filter.haircolor});
+                if (PageClassesEnabled)                                           
+                {                                                                
+                    tb.AddCssClass(PageClass);                                   
+                    tb.AddCssClass(i == PageModel.PageInfo.CurrentPage                    
                         ? PageClassSelected : PageClassNormal);
                 }
                 tb.InnerHtml.Append(i.ToString());

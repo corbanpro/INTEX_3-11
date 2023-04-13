@@ -47,53 +47,44 @@ namespace INTEX_3_11.Controllers
             ViewBag.BurialDepth = depth;
             ViewBag.Headdirection = Headdirection;
             ViewBag.haircolor = haircolor;
+
             int pageSize = 40;
-           
 
-            var PageInfo = new PageInfo()
-            {
-                TotalNumBurials = context.Burialmain.Count(),
-                BurialsPerPage = pageSize,
-                CurrentPage = pageNum
-                
-            };
-           
-            PageModel PageModel = new PageModel
-            {
 
+            PageModel PageModel = new PageModel()
+            {
                 BurialList = context.Burialmain
+                .Where(x => x.Ageatdeath == ageAtDeath || ageAtDeath == null)
+                .Where(x => x.Sex == sex || sex == null)
+                .Where(x => x.Depth == depth || depth == null)
+                .Where(x => x.Headdirection == Headdirection || Headdirection == null)
+                .Where(x => x.Haircolor == haircolor || haircolor == null)
                 .OrderBy(x => x.Id)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize)
-                .ToList(), 
-                
-                PageInfo = PageInfo
-                       
-               
+                .ToList(),
+
+                PageInfo = new PageInfo() {
+                    TotalNumBurials = context.Burialmain
+                        .Where(x => x.Ageatdeath == ageAtDeath || ageAtDeath == null)
+                        .Where(x => x.Sex == sex || sex == null)
+                        .Where(x => x.Depth == depth || depth == null)
+                        .Where(x => x.Headdirection == Headdirection || Headdirection == null)
+                        .Where(x => x.Haircolor == haircolor || haircolor == null)
+                        .Count(),
+                    BurialsPerPage = pageSize,
+                    CurrentPage = pageNum
+                },
+
+                Filter = new Filter()
+                {
+                    ageAtDeath = ageAtDeath,
+                    sex = sex,
+                    depth = depth,
+                    Headdirection = Headdirection,
+                    haircolor = haircolor
+                }
             };
-
-            if (!String.IsNullOrEmpty(ageAtDeath))
-            {
-                PageModel.BurialList = PageModel.BurialList.Where(x => x.Ageatdeath == ageAtDeath).ToList();
-            }
-            if (!String.IsNullOrEmpty(sex))
-            {
-                PageModel.BurialList = PageModel.BurialList.Where(x => x.Sex == sex).ToList();
-            }
-            if (!String.IsNullOrEmpty(Headdirection))
-            {
-                PageModel.BurialList = PageModel.BurialList.Where(x => x.Headdirection == Headdirection).ToList();
-            }
-            if (!String.IsNullOrEmpty(depth))
-            {
-                PageModel.BurialList = PageModel.BurialList.Where(x => x.Depth == depth).ToList();
-            }
-            if (!String.IsNullOrEmpty(haircolor))
-            {
-                PageModel.BurialList = PageModel.BurialList.Where(x => x.Haircolor == haircolor).ToList();
-            }
-
-
 
             return View(PageModel);
         }
