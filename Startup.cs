@@ -107,20 +107,18 @@ namespace INTEX_3_11
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapControllerRoute("agepage", "{ageAtDeath}/Page{pageNum}", new { Controller = "Home", action = "BurialList"});
-                endpoints.MapControllerRoute("sexpage", "{sex}/Page{pageNum}", new { Controller = "Home", action = "BurialList" });
-                endpoints.MapControllerRoute("depthpage", "{depth}/Page{pageNum}", new { Controller = "Home", action = "BurialList" });
-                endpoints.MapControllerRoute("Headdirectionpage", "{Headdirection}/Page{pageNum}", new { Controller = "Home", action = "BurialList" });
+
+                //endpoints.MapControllerRoute("agepage", "{ageAtDeath}/Page{pageNum}", new { Controller = "Home", action = "BurialList"});
+                //endpoints.MapControllerRoute("sexpage", "{sex}/Page{pageNum}", new { Controller = "Home", action = "BurialList" });
+                //endpoints.MapControllerRoute("depthpage", "{depth}/Page{pageNum}", new { Controller = "Home", action = "BurialList" });
+                //endpoints.MapControllerRoute("Headdirectionpage", "{Headdirection}/Page{pageNum}", new { Controller = "Home", action = "BurialList" });
                 
-                endpoints.MapControllerRoute("age", "{ageAtDeath}", new { Controller = "Home", action = "BurialList", pageNum = 1 });
-                endpoints.MapControllerRoute("sex", "{sex}", new { Controller = "Home", action = "BurialList", pageNum = 1 });
-                endpoints.MapControllerRoute("depth", "{depth}", new { Controller = "Home", action = "BurialList", pageNum = 1 });
-                endpoints.MapControllerRoute("Headdirection", "{Headdirection}", new { Controller = "Home", action = "BurialList", pageNum = 1 });
-                endpoints.MapControllerRoute("age", "{ageAtDeath}", new { Controller = "Home", action = "BurialList", pageNum = 1 });
-                endpoints.MapControllerRoute("paging", "Page{pageNum}", new { Controller = "Home", action = "BurialList"});
+                //endpoints.MapControllerRoute("age", "{ageAtDeath}", new { Controller = "Home", action = "BurialList", pageNum = 1 });
+                //endpoints.MapControllerRoute("sex", "{sex}", new { Controller = "Home", action = "BurialList", pageNum = 1 });
+                //endpoints.MapControllerRoute("depth", "{depth}", new { Controller = "Home", action = "BurialList", pageNum = 1 });
+                //endpoints.MapControllerRoute("Headdirection", "{Headdirection}", new { Controller = "Home", action = "BurialList", pageNum = 1 });
+                //endpoints.MapControllerRoute("age", "{ageAtDeath}", new { Controller = "Home", action = "BurialList", pageNum = 1 });
+                //endpoints.MapControllerRoute("paging", "Page{pageNum}", new { Controller = "Home", action = "BurialList"});
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

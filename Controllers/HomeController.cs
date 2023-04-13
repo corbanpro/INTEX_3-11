@@ -89,15 +89,15 @@ namespace INTEX_3_11.Controllers
             return View(PageModel);
         }
 
-        public IActionResult Search(string searching)
-        {
-            var Ageatdeath = from a in context.Burialmain select a;
-            if (!String.IsNullOrEmpty(searching))
-            {
-                Ageatdeath = Ageatdeath.Where(a => a.Ageatdeath.Contains(searching));
-            }
-            return View("BurialList", Ageatdeath.ToList());
-        }
+        //public IActionResult Search(string searching)
+        //{
+        //    var Ageatdeath = from a in context.Burialmain select a;
+        //    if (!String.IsNullOrEmpty(searching))
+        //    {
+        //        Ageatdeath = Ageatdeath.Where(a => a.Ageatdeath.Contains(searching));
+        //    }
+        //    return View("BurialList", Ageatdeath.ToList());
+        //}
 
         public IActionResult BurialView(long id)
         {
