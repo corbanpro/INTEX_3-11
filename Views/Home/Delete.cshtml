@@ -7,8 +7,8 @@
 <br />
 <h2>Are you sure you want to delete @Model.Id ? </h2>
 <form method="post" asp-controller="Home" asp-action="Delete">
-    <button type="submit">Delete</button>
-    <a asp-controller="Home" asp-action="AddData" class="btn" class="btn btn-primary">Cancel</a>
+    <button class="btn btn-secondary" type="submit">Delete</button>
+    <a asp-controller="Home" asp-action="BurialList" class="btn btn-primary" class="btn btn-primary">Cancel</a>
 
     <input type="hidden" asp-for="Id">
 </form>
