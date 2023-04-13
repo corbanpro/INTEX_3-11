@@ -271,11 +271,27 @@ namespace INTEX_3_11.Controllers
             resString = resString.Replace("{\"prediction\":\"", "");
             resString = resString.Replace("\"}", "");
 
+            if (resString == "W")
+            {
+                resString = "Full or Nearly Full Wrapping Remains (W)";
+            }
+            else if (resString == "H")
+            {
+                resString = "Partial Wrapping Remains (H)";
+            }
+            else if (resString == "B")
+            {
+                resString = "Bones and/or Only Partial Remains of Wrapping Remains (B)";
+            }
+            else
+            {
+                resString = "Unknown (U)";
+            }
             ViewData["Prediction"] = resString;
 
 
-
-            return View();
+            return View();           
+            
         }
 
         [HttpGet]
@@ -306,48 +322,51 @@ namespace INTEX_3_11.Controllers
         [Authorize]
         public IActionResult Edit(long id)
         {
-            var Editor = context.Burialmain.FirstOrDefault(x => x.Id == id);
-            if (Editor == null)
+            var EditBurial = context.Burialmain.FirstOrDefault(x => x.Id == id);
+            if (EditBurial == null)
             {
                 return NotFound();
             }
-            return View("AddData", Editor);
+            return View(EditBurial);
         }
 
         [HttpPost]
         [Authorize]
-        public IActionResult EditData(long id)
+        public IActionResult Edit(Burialmain EditEntry)
         {
-            var Editor = context.Burialmain.FirstOrDefault(x => x.Id == id);
+            var Editor = context.Burialmain.FirstOrDefault(x => x.Id == EditEntry.Id);
             if (Editor == null)
             {
                 return NotFound();
             }
 
-            // Populate the fields of the Editor object
-            Editor.Squarenorthsouth = Editor.Squarenorthsouth;
-            Editor.Northsouth = Editor.Northsouth;
-            Editor.Squareeastwest = Editor.Squareeastwest;
-            Editor.Eastwest = Editor.Eastwest;
-            Editor.Area = Editor.Area;
-            Editor.Burialnumber = Editor.Burialnumber;
-            Editor.Headdirection = Editor.Headdirection;
-            Editor.Westtohead = Editor.Westtohead;
-            Editor.Southtohead = Editor.Southtohead;
-            Editor.Westtofeet = Editor.Westtofeet;
-            Editor.Southtofeet = Editor.Southtofeet;
-            Editor.Depth = Editor.Depth;
-            Editor.Sex = Editor.Sex;
-            Editor.Ageatdeath = Editor.Ageatdeath;
-            Editor.Wrapping = Editor.Wrapping;
-            Editor.Facebundles = Editor.Facebundles;
-            Editor.Preservation = Editor.Preservation;
-            Editor.Haircolor = Editor.Haircolor;
-            Editor.Text = Editor.Text;
-            Editor.Fieldbookpage = Editor.Fieldbookpage;
+            // Populate the Editor object
+            Editor.Squarenorthsouth = EditEntry.Squarenorthsouth;
+            Editor.Northsouth = EditEntry.Northsouth;
+            Editor.Squareeastwest = EditEntry.Squareeastwest;
+            Editor.Eastwest = EditEntry.Eastwest;
+            Editor.Area = EditEntry.Area;
+            Editor.Burialnumber = EditEntry.Burialnumber;
+            Editor.Headdirection = EditEntry.Headdirection;
+            Editor.Westtohead = EditEntry.Westtohead;
+            Editor.Southtohead = EditEntry.Southtohead;
+            Editor.Westtofeet = EditEntry.Westtofeet;
+            Editor.Southtofeet = EditEntry.Southtofeet;
+            Editor.Depth = EditEntry.Depth;
+            Editor.Sex = EditEntry.Sex;
+            Editor.Ageatdeath = EditEntry.Ageatdeath;
+            Editor.Wrapping = EditEntry.Wrapping;
+            Editor.Facebundles = EditEntry.Facebundles;
+            Editor.Preservation = EditEntry.Preservation;
+            Editor.Haircolor = EditEntry.Haircolor;
+            Editor.Text = EditEntry.Text;
+            Editor.Fieldbookpage = EditEntry.Fieldbookpage;
 
+            context.Burialmain.Update(Editor);
+            context.SaveChanges();
+           
 
-            return View("AddData", Editor);
+            return RedirectToAction("BurialList");
         }
 
     }

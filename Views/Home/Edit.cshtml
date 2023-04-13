@@ -1,25 +1,17 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@model Burialmain
+﻿@model Burialmain
 
-<h1>Add a Mummy</h1>
+<h1>Edit Mummy</h1>
 
 <div>
     <form method="post">
-        <input type="hidden" asp-for="Id" value="@Model.Id" />
-        @*validation makes so error messages show up*@
-        @*<div asp-validation-summary="All"></div>*@
 
         <div class="row">
             <div class="col-2">
-                <label asp-for="Squarenorthsouth">Square North South:</label>
+                <label asp-for="Northsouth">North South:</label>
             </div>
             <div class="col">
-                <select asp-for="Squarenorthsouth">
-                    <option>Select an Option:</option>
+                <select asp-for="Northsouth" value="@Model.Northsouth">
+                    <option value="">Select an Option:</option>
                     <option value="N">North</option>
                     <option value="S">South</option>
                 </select>
@@ -28,23 +20,10 @@
 
         <div class="row">
             <div class="col-2">
-                <label asp-for="Northsouth" >North South:</label>
+                <label asp-for="Squarenorthsouth">Square North South:</label>
             </div>
             <div class="col">
-                <input asp-for="Northsouth" type="number" />
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-2">
-                <label asp-for="Squareeastwest">Square East West:</label>
-            </div>
-            <div class="col">
-                <select asp-for="Squareeastwest">
-                    <option>Select an Option:</option>
-                    <option value="W">W</option>
-                    <option value="E">E</option>
-                </select>
+                <input asp-for="Squarenorthsouth" type="number" value="@Model.Squarenorthsouth" />
             </div>
         </div>
 
@@ -53,7 +32,20 @@
                 <label asp-for="Eastwest">East West:</label>
             </div>
             <div class="col">
-                <input asp-for="Eastwest" type="number" />
+                <select asp-for="Eastwest" value="@Model.Eastwest">
+                    <option value="">Select an Option:</option>
+                    <option value="W">W</option>
+                    <option value="E">E</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Squareeastwest">Square East West:</label>
+            </div>
+            <div class="col">
+                <input asp-for="Squareeastwest" type="number" value="@Model.Squareeastwest" />
             </div>
         </div>
 
@@ -62,8 +54,8 @@
                 <label asp-for="Area">Area:</label>
             </div>
             <div class="col">
-                <select asp-for="Area">
-                    <option>Select an Option:</option>
+                <select asp-for="Area" value="@Model.Area">
+                    <option value="">Select an Option:</option>
                     <option value="NW">NW</option>
                     <option value="NE">NE</option>
                     <option value="SW">SW</option>
@@ -77,7 +69,7 @@
                 <label asp-for="Burialnumber">Burial Number:</label>
             </div>
             <div class="col">
-                <input asp-for="Burialnumber" type="number" />
+                <input asp-for="Burialnumber" type="number" value="@Model.Burialnumber" />
             </div>
         </div>
 
@@ -88,7 +80,7 @@
                 <label asp-for="Headdirection">Head direction:</label>
             </div>
             <div class="col">
-                <input asp-for="Headdirection"/>
+                <input asp-for="Headdirection" value="@Model.Headdirection" />
             </div>
         </div>
 
@@ -97,7 +89,7 @@
                 <label asp-for="Westtohead">West to head:</label>
             </div>
             <div class="col">
-                <input asp-for="Westtohead" type="number" />
+                <input asp-for="Westtohead" type="number"  value="@Model.Westtohead" />
             </div>
         </div>
 
@@ -106,7 +98,7 @@
                 <label asp-for="Southtohead">South to head:</label>
             </div>
             <div class="col">
-                <input asp-for="Southtohead" type="number" />
+                <input asp-for="Southtohead" type="number" value="@Model.Southtohead" />
             </div>
         </div>
 
@@ -115,7 +107,7 @@
                 <label asp-for="Westtofeet">West to feet:</label>
             </div>
             <div class="col">
-                <input asp-for="Westtofeet" type="number" />
+                <input asp-for="Westtofeet" type="number" value="@Model.Westtofeet" />
             </div>
         </div>
 
@@ -124,7 +116,7 @@
                 <label asp-for="Southtofeet">South to feet:</label>
             </div>
             <div class="col">
-                <input asp-for="Southtofeet" type="number" />
+                <input asp-for="Southtofeet" type="number" value="@Model.Southtofeet" />
             </div>
         </div>
 
@@ -133,7 +125,7 @@
                 <label asp-for="Depth">Depth(m):</label>
             </div>
             <div class="col">
-                <input asp-for="Depth" type="number" />
+                <input asp-for="Depth" type="number" value="@Model.Depth" />
             </div>
         </div>
 
@@ -149,8 +141,8 @@
                 <label asp-for="Sex">Sex:</label>
             </div>
             <div class="col">
-                <select asp-for="Sex">
-                    <option>Select an Option:</option>
+                <select asp-for="Sex" value="@Model.Sex">
+                    <option value="">Select an Option:</option>
                     <option value="U">Unknown</option>
                     <option value="M">Male</option>
                     <option value="F">Female</option>
@@ -163,8 +155,8 @@
                 <label asp-for="Ageatdeath">Age at death:</label>
             </div>
             <div class="col">
-                <select asp-for="Ageatdeath">
-                    <option>Select an Option:</option>
+                <select asp-for="Ageatdeath" value="@Model.Ageatdeath">
+                    <option value="">Select an Option:</option>
                     <option value="U">Unknown</option>
                     <option value="A">Adult(15+)</option>
                     <option value="C">Child(3-15)</option>
@@ -179,8 +171,8 @@
                 <label asp-for="Wrapping">Wrapping:</label>
             </div>
             <div class="col">
-                <select asp-for="Wrapping">
-                    <option>Select an Option:</option>
+                <select asp-for="Wrapping" value="@Model.Wrapping">
+                    <option value="">Select an Option:</option>
                     <option value="F">Full or Nearly Full</option>
                     <option value="H">Partial</option>
                     <option value="B">Bones Only</option>
@@ -194,7 +186,7 @@
                 <label asp-for="Facebundles">Facebundles:</label>
             </div>
             <div class="col">
-                <input asp-for="Facebundles" />
+                <input asp-for="Facebundles" value="@Model.Facebundles" />
             </div>
         </div>
 
@@ -203,7 +195,7 @@
                 <label asp-for="Preservation">Preservation:</label>
             </div>
             <div class="col">
-                <input asp-for="Preservation" />
+                <input asp-for="Preservation" value="@Model.Preservation" />
             </div>
         </div>
 
@@ -212,8 +204,8 @@
                 <label asp-for="Haircolor">Hair Color:</label>
             </div>
             <div class="col">
-                <select asp-for="Haircolor">
-                    <option>Select an Option:</option>
+                <select asp-for="Haircolor" value="@Model.Haircolor">
+                    <option value="">Select an Option:</option>
                     <option value="U">Unknown</option>
                     <option value="B">Brown</option>
                     <option value="K">Black</option>
@@ -229,7 +221,7 @@
                 <label asp-for="Text">Field Notes:</label>
             </div>
             <div class="col">
-                <input asp-for="Text" />
+                <input asp-for="Text" value="@Model.Text" />
             </div>
         </div>
 
@@ -238,12 +230,14 @@
                 <label asp-for="Fieldbookpage">Fieldbook Page:</label>
             </div>
             <div class="col">
-                <input asp-for="Fieldbookpage" type="number" />
+                <input asp-for="Fieldbookpage" type="number" value="@Model.Fieldbookpage" />
             </div>
         </div>
 
         <br />
 
-        <button type="submit">Submit</button>
+        <button class="btn btn-primary"type="submit">Submit</button>
+        <a asp-controller="Home" asp-action="BurialList" class="btn btn-primary" class="btn btn-secondary">Cancel</a>
+
     </form>
 </div>
