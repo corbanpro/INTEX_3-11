@@ -52,7 +52,7 @@ namespace INTEX_3_11.Controllers
                 .Where(x => x.Depth == depth || depth == null)
                 .Where(x => x.Headdirection == Headdirection || Headdirection == null)
                 .Where(x => x.Haircolor == haircolor || haircolor == null)
-                .OrderBy(x => x.Id)
+                .OrderByDescending(x => x.Id)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize)
                 .ToList(),
@@ -179,18 +179,10 @@ namespace INTEX_3_11.Controllers
         [HttpPost]
         public IActionResult AddData(Burialmain newEntry)
         {
-            //make sure its valid
-            if (ModelState.IsValid)
-            {
-                newEntry.Id = context.Burialmain.OrderBy(x => x.Id).Last().Id + 1;
-                context.Add(newEntry);
-                context.SaveChanges();
-                return View("Confirmation");
-            }
-            else
-            {
-                return View(newEntry);
-            }
+            newEntry.Id = context.Burialmain.OrderBy(x => x.Id).Last().Id + 1;
+            context.Add(newEntry);
+            context.SaveChanges();
+            return View("Confirmation");
 
         }
 
