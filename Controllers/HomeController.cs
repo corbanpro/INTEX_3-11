@@ -267,7 +267,7 @@ namespace INTEX_3_11.Controllers
             product = product.Replace("adultsubadult_NLL", "adultsubadult_N LL");
             var values = JsonConvert.DeserializeObject<Dictionary<string, string>>(product);
             var content = new FormUrlEncodedContent(values);
-            string url = "http://18.221.127.150/predict";
+            string url = "http://3.221.213.255/predict";
 
             WebClient webClient = new WebClient();
             byte[] resByte;

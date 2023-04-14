@@ -39,8 +39,8 @@ namespace INTEX_3_11
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(
+                    Configuration.GetConnectionString("IntexDbConnection")));
          
 
             services.AddDefaultIdentity<IdentityUser>(options => 
