@@ -35,7 +35,7 @@ namespace INTEX_3_11
                 options.CheckConsentNeeded = context => true;
                 options.ConsentCookie.Expiration = TimeSpan.FromMinutes(5);
                 // requires using Microsoft.AspNetCore.Http;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
+                options.MinimumSameSitePolicy = SameSiteMode.Lax;
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -97,13 +97,13 @@ namespace INTEX_3_11
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.Use(async (context, next) =>
-            {
-                Console.WriteLine("Adding CSP header...");
-                context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline' 'sha256-aAvpPgsqZMh9ktCr5wFqc5rhFpxFaS4RcrjNhdX8cYQ='; style-src 'self'; font-src 'self'; img-src 'self'; frame-src 'self'");
+            //app.Use(async (context, next) =>
+            //{
+            //    Console.WriteLine("Adding CSP header...");
+            //    context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline' 'sha256-aAvpPgsqZMh9ktCr5wFqc5rhFpxFaS4RcrjNhdX8cYQ='; style-src 'self'; font-src 'self'; img-src 'self'; frame-src 'self'");
             
-                await next();
-            });
+            //    await next();
+            //});
 
             app.UseEndpoints(endpoints =>
             {
