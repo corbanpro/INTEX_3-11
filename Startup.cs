@@ -1,6 +1,7 @@
 using INTEX_3_11.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -27,23 +28,38 @@ namespace INTEX_3_11
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential 
+                // cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.ConsentCookie.Expiration = TimeSpan.FromMinutes(5);
+                // requires using Microsoft.AspNetCore.Http;
+                options.MinimumSameSitePolicy = SameSiteMode.Lax;
+            });
+
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                options.UseNpgsql(
+                    Configuration.GetConnectionString("IntexDbConnection")));
+         
+
+            services.AddDefaultIdentity<IdentityUser>(options => 
+            options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            services.AddAuthentication()
-                .AddGoogle(options =>
-                {
-                    IConfigurationSection googleAuthNSection =
-                        Configuration.GetSection("Authentication:Google");
 
-                    options.ClientId = googleAuthNSection["ClientId"];
-                    options.ClientSecret = googleAuthNSection["ClientSecret"];
-                });
+
+            //services.AddAuthentication()
+            //    .AddGoogle(options =>
+            //    {
+            //        IConfigurationSection googleAuthNSection =
+            //            Configuration.GetSection("Authentication:Google");
+
+            //        options.ClientId = googleAuthNSection["ClientId"];
+            //        options.ClientSecret = googleAuthNSection["ClientSecret"];
+            //    });
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -54,6 +70,7 @@ namespace INTEX_3_11
                 options.Password.RequireUppercase = false;
                 options.Password.RequiredLength = 12;
                 options.Password.RequiredUniqueChars = 1;
+
             });
         }
 
@@ -73,14 +90,37 @@ namespace INTEX_3_11
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCookiePolicy();
 
             app.UseRouting();
-
+            
             app.UseAuthentication();
             app.UseAuthorization();
 
+            //app.Use(async (context, next) =>
+            //{
+            //    Console.WriteLine("Adding CSP header...");
+            //    context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline' 'sha256-aAvpPgsqZMh9ktCr5wFqc5rhFpxFaS4RcrjNhdX8cYQ='; style-src 'self'; font-src 'self'; img-src 'self'; frame-src 'self'");
+            
+            //    await next();
+            //});
+
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("agepage", "{ageAtDeath}/Page{pageNum}", new { Controller = "Home", action = "BurialList"});
+                endpoints.MapControllerRoute("sexpage", "{sex}/Page{pageNum}", new { Controller = "Home", action = "BurialList" });
+                endpoints.MapControllerRoute("depthpage", "{depth}/Page{pageNum}", new { Controller = "Home", action = "BurialList" });
+                endpoints.MapControllerRoute("Headdirectionpage", "{Headdirection}/Page{pageNum}", new { Controller = "Home", action = "BurialList" });
+                
+                endpoints.MapControllerRoute("age", "{ageAtDeath}", new { Controller = "Home", action = "BurialList", pageNum = 1 });
+                endpoints.MapControllerRoute("sex", "{sex}", new { Controller = "Home", action = "BurialList", pageNum = 1 });
+                endpoints.MapControllerRoute("depth", "{depth}", new { Controller = "Home", action = "BurialList", pageNum = 1 });
+                endpoints.MapControllerRoute("Headdirection", "{Headdirection}", new { Controller = "Home", action = "BurialList", pageNum = 1 });
+                endpoints.MapControllerRoute("age", "{ageAtDeath}", new { Controller = "Home", action = "BurialList", pageNum = 1 });
+                endpoints.MapControllerRoute("paging", "Page{pageNum}", new { Controller = "Home", action = "BurialList"});
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

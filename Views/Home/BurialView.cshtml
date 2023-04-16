@@ -5,4 +5,157 @@
     ViewData["Title"] = "View Burial";
 }
 
-<h1>View Burial</h1>
+@model FullBurial
+
+<h1>@Model.Burialmain.Squarenorthsouth @Model.Burialmain.Northsouth @Model.Burialmain.Squareeastwest @Model.Burialmain.Eastwest @Model.Burialmain.Area @Model.Burialmain.Burialnumber</h1>
+
+<div class="row">
+    <div class="col-6">
+        @try
+        {
+            @if (Model.Burialmain.Sex != "" & Model.Burialmain.Sex != null)
+            {
+            <div class="row">
+                <div class="col-5">
+                    Sex:
+                </div>
+                <div class="col">
+                    @Model.Burialmain.Sex
+                </div>
+            </div>
+            }
+        } catch {}
+
+
+        @try
+        {
+            @if (Model.Color.Value != "" & Model.Color.Value != null)
+            {
+                <div class="row">
+                    <div class="col-5">
+                        Textile color:
+                    </div>
+                    <div class="col">
+                        @Model.Color.Value
+                    </div>
+                </div>
+            }
+        } catch {}
+
+        @try
+        {
+            if (Model.Structure.Value != "" & Model.Structure.Value != null)
+            {
+                <div class="row">
+                    <div class="col-5">
+                        Textile structure:
+                    </div>
+                    <div class="col">
+                        @Model.Structure.Value
+                    </div>
+                </div>
+            }
+        } catch {}
+
+        @try
+        {
+            if (Model.Burialmain.Depth != "" & Model.Burialmain.Depth != null)
+            {
+                <div class="row">
+                    <div class="col-5">
+                        Burial Depth:
+                    </div>
+                    <div class="col">
+                        @Model.Burialmain.Depth
+                    </div>
+                </div>
+            }
+        } catch {}
+
+        @try
+        {
+            if (Model.Burialmain.Ageatdeath != "" & Model.Burialmain.Ageatdeath != null)
+            {
+                <div class="row">
+                    <div class="col-5">
+                        Age at Death:
+                    </div>
+                    <div class="col">
+                        @Model.Burialmain.Ageatdeath
+                    </div>
+                </div>
+            }
+        } catch{}
+
+        @try
+        {
+            if (Model.Burialmain.Headdirection != "" & Model.Burialmain.Headdirection != null)
+            {
+                <div class="row">
+                    <div class="col-5">
+                        Head Direction:
+                    </div>
+                    <div class="col">
+                        @Model.Burialmain.Headdirection
+                    </div>
+                </div>
+            }
+        } catch {}
+
+        @try
+        {
+            if (Model.Textilefunction.Value != "" & Model.Textilefunction.Value != null)
+            {
+                <div class="row">
+                    <div class="col-5">
+                        Textile Function:
+                    </div>
+                    <div class="col">
+                        @Model.Textilefunction.Value
+                    </div>
+                </div>
+            }
+        } catch {}
+
+        @try
+        {
+            if (Model.Burialmain.Haircolor != "" & Model.Burialmain.Haircolor != null)
+            {
+                <div class="row">
+                    <div class="col-5">
+                        Hair Color:
+                    </div>
+                    <div class="col">
+                        @Model.Burialmain.Haircolor
+                    </div>
+                </div>
+            }
+        } catch{}
+
+        @try
+        {
+            if (Model.Bodyanalysischart.Notes != "" & Model.Bodyanalysischart.Notes != null)
+            {
+                <div class="row">
+                    <div class="col-5">
+                        Field Notes:
+                    </div>
+                    <div class="col">
+                        @Model.Bodyanalysischart.Notes
+                    </div>
+                </div>
+            }
+        } catch{}
+
+        </div>
+    <br />
+    
+
+    <div class="col-6">
+        <img src="" />
+    </div>
+
+</div>
+
+
+

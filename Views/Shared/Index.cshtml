@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Mummy Tracker";
+}
+
+<div class="container mt-5">
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Mummy Tracker</h1>
+        <p class="lead">
+            Welcome to Mummy Tracker! During multiple years of study at Fag el-Gamous, researchers have excavated more than 1,000 mummies and collected data in field notes, spreadsheets, and simple databases about each mummy’s location, physical orientation in the ground, burial depth, hair color, wrapping (including information about the textiles used), sex, age, bone (including skull and teeth) dimensions, items accompanying the mummy, and more.
+            And, of course, there are many, many photographs. This website is a place where aspects of this information can be shared with researchers and interested members of the public around the world.
+        </p>
+        <p>
+            <a class="btn btn-primary btn-lg" href="@Url.Action("BurialList")" role="button">View Burial Information</a>
+        </p>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="~/img/excavation.jpg" class="card-img-top" alt="Excavation photo">
+                <div class="card-body">
+                    <p class="card-text">BYU archeologists excavating site.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="~/img/Image2.jpg" class="card-img-top" alt="Excavation photo">
+                <div class="card-body">
+                    <p class="card-text">Archeologists holding mummy.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="~/img/image3.jpg" class="card-img-top" alt="Excavation photo">
+                <div class="card-body">
+                    <p class="card-text">More Excavations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
